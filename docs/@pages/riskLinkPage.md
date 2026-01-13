@@ -10,7 +10,7 @@ coverImg: /home/bg29.webp
 layout: false
 riskLinkPage: true
 logo: /avatar/avatar.webp
-desc: 即将离开 Hyde Blog，请注意财产安全 # 与 name 二选一
+desc: 即将离开 🔥Flumina Blog，请注意财产安全 # 与 name 二选一
 linkIllegal: 链接安全性校验中，请稍后 ...
 article: false
 ---
