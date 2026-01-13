@@ -15,12 +15,12 @@ import yaml
 
 
 class PermalinkProcessor:
-    def __init__(self, prefix_char: str = 'p'):
+    def __init__(self, prefix_char: str = 'note'):
         """
         初始化处理器
         
         Args:
-            prefix_char (str): 一级前缀字符，默认为'p'
+            prefix_char (str): 一级前缀字符，默认为'note'
         """
         self.prefix_char = prefix_char.strip('/')  # 移除可能的斜杠
         self.success_count = 0
@@ -200,30 +200,32 @@ class PermalinkProcessor:
 
 def main():
     """主函数"""
+    repo_root = Path(__file__).resolve().parents[2]
+    default_docs_dir = repo_root / "docs"
+
     parser = argparse.ArgumentParser(
         description="递归处理目录中所有.md文件的permalink字段",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 使用示例:
-  python script.py -d "D:\\我的开源项目\\vitepress-theme-teek-one-public\\docs\\20.文档" -p "doc"
-  python script.py --directory "/path/to/docs" --prefix "blog"
-  python script.py -d "./docs" (使用默认前缀 'p')
+    python scripts/python/md_permalink_processor.py -d "./docs" -p "note"
+    python scripts/python/md_permalink_processor.py --directory "./docs" --prefix "blog"
+    python scripts/python/md_permalink_processor.py --dry-run
         """
     )
     
     parser.add_argument(
         '-d', '--directory',
         type=str,
-        default=r"D:\code\test\teek-one\docs\10.笔记专栏",
-        # help='要处理的目录路径 (默认: D:\\我的开源项目\\vitepress-theme-teek-one-public\\docs\\10.Teek)'
-        help='要处理的目录路径 (默认: D:\\我的开源项目\\vitepress-theme-teek-one-public\\docs\\20.文档)'
+        default=str(default_docs_dir),
+        help='要处理的目录路径 (默认: 仓库根目录下的 docs 目录)'
     )
     
     parser.add_argument(
         '-p', '--prefix',
         type=str,
-        default='Note',
-        help='一级前缀字符 (默认: p)'
+        default='note',
+        help='一级前缀字符 (默认: note)'
     )
     
     parser.add_argument(

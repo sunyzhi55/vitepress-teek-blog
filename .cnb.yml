@@ -32,7 +32,7 @@ main:
       services:
         - docker
         - git-clone-yyds
-    - imports: https://cnb.cool/W3C/Hyde/secret/-/blob/main/env.yml
+    - imports: https://cnb.cool/W3C/Flumina/secret/-/blob/main/env.yml
       settings:
         user: ${SSH_USER} # SSH用户名（从环境变量获取，避免硬编码敏感信息）
         key: ${SSH_KEY} # SSH私钥（用于免密登录目标服务器，从环境变量获取）
@@ -40,7 +40,7 @@ main:
         hosts:
           - 666.666.666.666 # 目标服务器IP（要部署到的服务器地址，实际替换自己的服务器IP）
         source: docs/.vitepress/dist/ # 待同步的本地文件目录（阶段3构建出的静态文件
-        target: /root/rsync/teek.seasir.top/dist/ # 目标服务器上的存放路径
+        target: /root/rsync/flumina-blog/dist/ # 目标服务器上的存放路径
         delete: true # 同步时删除目标路径中不存在的文件（确保目标与本地完全一致，避免冗余文件）
       docker:
         image: docker.cnb.cool/znb/images/node:18
@@ -73,7 +73,7 @@ main:
           # if: |
           #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
           image: node:22
-          script: npx edgeone pages deploy ./docs/.vitepress/dist --name teek-hyde --token $EDGEONE_PAGES_API_TOKEN
+          script: npx edgeone pages deploy ./docs/.vitepress/dist --name flumina-blog --token $EDGEONE_PAGES_API_TOKEN
 
 
         #同步仓库到gitee                  
@@ -84,7 +84,7 @@ main:
             auth_type: https
             username: ${GIT_USERNAME}
             password: ${GIT_ACCESS_TOKEN}
-            target_url: https://gitee.com/SeasirHyde/teek-hyde.git
+            target_url: https://github.com/sunyzhi55/vitepress-teek-blog.git
             # git_email: 'github-actions[bot]@users.noreply.github.com'
 
 
@@ -99,7 +99,7 @@ main:
             debug: true # 新增: 是否启用调试模式
             c_type: "markdown" # 支持: text, markdown, link, actionCard, multiActionCard, feedCard
             content: |
-              > **🎉 Hyde Blog 又一次发布成功啦！**   
+              > **🎉 🔥Flumina Blog 又一次发布成功啦！**   
               > **构建时间:** $CUSTOM_ENV_DATE_INFO          
               > **构建id:** $CNB_BUILD_ID  
               > **提交id:** $CNB_COMMIT_SHORT            
@@ -107,4 +107,4 @@ main:
               > **提交信息:** $CNB_COMMIT_MESSAGE_TITLE            
               > **提交者:** $CNB_COMMITTER            
               > **仓库地址:** [$CNB_REPO_URL_HTTPS]($CNB_REPO_URL_HTTPS)            
-              > **我的网站:** [teek.seasir.top](https://teek.seasir.top/)            
+              > **我的主页:** [github.com/sunyzhi55](https://github.com/sunyzhi55)            
