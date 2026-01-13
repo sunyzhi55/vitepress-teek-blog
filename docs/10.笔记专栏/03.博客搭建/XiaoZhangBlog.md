@@ -1,0 +1,587 @@
+---
+categories:
+- 笔记专栏
+- 博客搭建
+coverImg: /home/bg6.webp
+date: 2024-11-13 20:05:45
+permalink: /Note/Blog
+title: XiaoZhangBlog
+---
+# 博客部署教程-宝塔面版详细版
+
+:::tip
+
+## 版权声明[](https://wiki.onedayxyy.cn/blog#版权声明)
+
+> 本着开源共享、共同学习的精神：
+>
+> 本文是在 博主[Ruyu](http://mrzym.top/) 文章：《博客部署教程-宝塔面板》http://mrzym.top/#/article?id=6 基础上增加了自己实践过程的一些细节，转载无需和我联系，但请注明文章来源。如果侵权之处，请联系博主进行删除，谢谢~
+> :::
+
+:::warning
+
+如有图片打不开请开外网或者 VPN
+
+:::
+
+<svg t="1716800756587" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3176" width="22" height="22"><path d="M512 960c-246.4 0-448-201.6-448-448s201.6-448 448-448 448 201.6 448 448-201.6 448-448 448z" fill="#D81E06" p-id="3177"></path><path d="M721.664 467.968h-235.52a22.272 22.272 0 0 0-20.736 20.736v51.776c0 10.368 10.368 20.736 20.736 20.736H628.48c10.368 0 20.736 10.304 20.736 20.672v10.368c0 33.664-28.48 62.08-62.144 62.08H392.896a22.272 22.272 0 0 1-20.672-20.672V436.928c0-33.664 28.48-62.08 62.08-62.08h287.36a22.272 22.272 0 0 0 20.736-20.736v-51.84a22.272 22.272 0 0 0-20.736-20.672h-287.36A152.96 152.96 0 0 0 281.6 434.368v287.36c0 10.304 10.368 20.672 20.736 20.672h302.848c75.072 0 137.216-62.08 137.216-137.216v-116.48a22.272 22.272 0 0 0-20.736-20.736z" fill="#FFFFFF" p-id="3178"></path></svg> [Gitee 地址](https://gitee.com/mrzym/stable-version-of-blog)
+
+<svg t="1676025513460" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2745" width="18" height="18"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="2746"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="2747"></path></svg> [BiiBili 地址](https://space.bilibili.com/419858932?spm_id_from=333.1007.0.0)
+
+## 1.连接服务器
+
+使用远程连接工具，比如 Xshell 连接到您服务器，输入服务器的 ip 和端口号，以及服务器用户名和密码
+
+## 2.服务器内安装宝塔面板
+
+**Centos 安装脚本**
+
+```shell
+yum install -y wget && wget -O install.sh https://download.bt.cn/install/install_6.0.sh && sh install.sh ed8484bec
+```
+
+安装好后，会给你展示访问宝塔内网、外网面板地址(记好外网面板地址，需要用这个在浏览器打开)、以及登录用户名和密码类似下图（最新安装的提示会很全，偷懒网上找了个类似的老图
+
+![img](http://img.mrzym.top/Fvo6Ml5xmLepLTPm9B7Ep4jS39cw)
+
+## 3.进入宝塔面板
+
+在浏览器内打开宝塔安装时给的外网面板地址，输入用户名和密码登录
+
+## 4.环境准备
+
+进入软件商店，安装 Nginx、minio(Docker 应用) 、MySQL、Node.js,先安装这 4 个
+
+![1730724319290](https://seasir.top/images/1730724319290.jpg)
+
+## 5.配置后端服务
+
+### 5.1 在根目录的 www/wwwroot 下创建文件夹 blog
+
+![1730724554239](https://seasir.top/images/1730724554239.jpg)
+
+### 5.2 复制后端文件夹到服务器
+
+使用 Xftp 工具将 blog-server 整个文件夹放在/www/wwwroot/blog 路径下
+
+![1730724574171](https://seasir.top/images/1730724574171.jpg)
+
+### 5.3 安装 npm
+
+首先输入 node 看是否有 node 版本，没有的话安装下
+
+```sh
+sudo yum install epel-release
+
+sudo yum install nodejs
+
+node --version
+```
+
+安装成功如图：
+
+![1730724634272](https://seasir.top/images/1730724634272.jpg)
+
+### 5.4 进入 blog-server 文件夹输入 npm i 安装依赖
+
+```sh
+cd /www/wwwroot/blog/blog-server
+```
+
+```sh
+npm i
+```
+
+## 6.开放后端端口
+
+去左侧安全开放后端 8888 端口，否则后端服务无法访问
+
+![7ae3f796628b89c1fc0342e703ba3241](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730569962_0.png)
+
+![7ae3f796628b89c1fc0342e703ba3241](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730569962_0.png)
+
+## 7.mysql 数据配置
+
+### 7.1 添加数据库
+
+数据库名：online_blog，数据库用户和数据库密码，然后点击确定
+
+![77b7f87c256815ef8ce56aa2352f504e](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730569983_0.png)
+
+### 7.2 导入数据库
+
+导入 blog-server\db 下面的 online_blog.sql
+
+![93f3b2e69fba7a993e090fb8527cc128](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570008_0.png)
+
+(有一次导入是上传文件，上传完成后还会显示上传成功的 sql 文件，还需要在那个文件右侧点击一次导入才算是导入成功)，导入过后可以重启一下 mysql，有可能会出现导入了但是数据库没重启就没生效的情况。
+
+![5d6dab8f9b1d3ee817519e5e6864fe71](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570034_0.png)
+
+## 8.后端基础配置
+
+找到 blog-server 下面的.env 配置，里面包含项目后端的基础配置
+
+```java
+# node项目启动端口号
+APP_PORT = 8888
+# 数据库地址
+MYSQL_HOST = 您的服务器ip
+# 数据库端口号
+MYSQL_PORT = 3306
+# 数据库连接名
+MYSQL_USER = online_blog
+# 数据库密码
+MYSQL_PASSWORD = 您创建数据库的密码，可以在宝塔数据库面板看到
+# 数据库名称
+MYSQL_DB = online_blog
+# 超级管理员密码 超级管理员账户默认是admin 密码在这里自定义，然后通过管理员给你自己角色来获得修改权限
+ADMIN_PASSWORD = ''
+
+# 七牛云 AK
+ACCESSKEY = ''
+# 七牛云 SK
+SECRETKEY = ''
+# 七牛云存储空间名称
+BUCKET = ''
+
+# minio config 需要使用minio的就配置一下
+# minio AK
+MINIO_ACCESSKEY = ''
+
+# minio SK
+MINIO_SECRETKEY = ''
+
+# minio bucket(也就是minio桶的名称)
+MINIO_BUCKET = 'blog-images'
+
+# minio服务地址，直接写服务器地址，或者是网址就行，比如我的是admin.seasir.top，不能带http://或者是https:// minio 会自动带
+MINIO_PATH = 'admin.seasir.top'
+
+# 本地:local   七牛云:qiniu   在线云服务器：online    minio服务器：minio
+UPLOADTYPE = 'minio'
+
+# 服务器地址 用于拼接图片显示 可以使用七牛云测试域名 前面请带上http://或者https://根据实际情况带上
+# 本地就是 'http://127.0.0.1:8888/' 像使用了七牛云绑定了自己的二级域名 博主的图片域名 'http://img.mrzym.top/'
+# 具体如何设置二级域名 可以百度 七牛云文档也有教程 如果嫌麻烦 可以使用minio 只需要在自己的服务器上装一个就行 请看博客部署教程
+BASEURL = 'http://www.seasir.top'
+
+# JWT密钥
+JWT_SECRET = blog
+```
+
+## 9.配置文件上传方式
+
+文件上传推荐先使用 minio 上传，上传模式选择 minio
+
+minio 安装方式：首先下载 docker 在软件安装面板搜来装就行。如果装不了就在安装面板选择使用命令行的方式安装
+
+在宝塔里打开终端或者 xshell 终端执行下载 minio 的操作，然后使用 docker 运行 minio
+
+```dockerfile
+// 1、安装minio
+docker pull minio/minio
+// 2、运行 minio
+// docker 运行minio 修改下面的user 和 password 那个就是minio登录账户密码 可以改成自己记得住的
+docker run --name minio \
+-p 9000:9000 \
+-p 9999:9999 \
+-d --restart=always \
+-e "MINIO_ROOT_USER=minio" \
+-e "MINIO_ROOT_PASSWORD=minio@123" \
+-v /home/minio/data:/data \
+-v /home/minio/config:/root/.minio \
+minio/minio server /data \
+--console-address '0.0.0.0:9999'
+```
+
+运行好以后 查看 docker 面板 会看到运行的 minio 然后打开服务器和宝塔的 9999、9000 端口进行放行 使用服务器 ip/域名 + :9999 登录
+
+![510c2dfc863e6b72a2657bd62e20f95b](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570107_0.png)
+
+登录 minio
+
+![14492b01c28ff87ba488c79f56af683b](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570164_0.png)
+
+创建桶，输入桶的名称：blog-images，桶的名称务必和我的一致 方便代理 后续熟悉了项目自己可以再修改
+
+![37981ea233fe07637b5ef2d2640e370c](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570170_0.png)
+
+![img](http://mrzym.top/blog-images/GpoBaNhKRrSx)
+
+把桶的权限改为 public
+
+![img](http://mrzym.top/blog-images/wCePuROQCRvf)
+
+创建 Access Key 好后，把 Access Key、Secret Key、桶的名称填入 .env 配置里 就可以上传了
+
+![e4172c6e0bbeab0e288859d37cc887f6](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570199_0.png)
+
+其他配置看下博主的：http://mrzym.top/#/article?id=6
+
+## 10.后端项目运行
+
+### 10.1 点击宝塔-网站-Node 项目-添加 Node 项目
+
+![606659e6091bd2db214d5ad9e4ce8518](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570226_0.png)
+
+### 10.2 配置 node 项目的基本信息，如图：![img](http://mrzym.top/blog-images/bPfmRfIXxjej)
+
+切记 打开设置后有一个开启外网映射的功能 开启了以后会有一个项目配置文件可以修改 如果没有特殊需求 请不要修改 因为我们后面会全局配置 nginx 如果这里配置了 会和全局的有冲突
+
+![img](http://mrzym.top/blog-images/wyeBASGdgRWi)
+
+开放后端 3306 端口，成功启动后可以看一下项目日志，如果日志如下图
+
+![8735d0523c06286da7df77bab18a07b2](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570279_0.png)
+
+则表明后端服务运行成功了，可以在浏览器输入服务器地址+ :端口号访问。若是出现数据库连接失败，就说明数据库账户、密码这些不对，可以去/www/wwwroot/blog/blog-server 下面的.env 配置里面检查
+
+## 11.前端配置
+
+11.1 在/www/wwwroot/blog 新建 blogV3 文件夹，分别新建 admin 和 blog，admin 对应的是博客后台前端，blog 对应的是博客前端
+
+11.2 打包前端，使用 vscode 分别打开 admin 和 blog，**前端打包前需要安装 Node.js**，没有安装先去百度怎么安装。打包成功后会有 dist 文件夹，使用 Xftp 7 将 dist 整个文件夹放在/www/wwwroot/blog/blogV3/blog 和/www/wwwroot/blog/blogV3/admin 目录下，
+
+![171cfcbd36272c3c4f7feae8735e47af](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570291_0.png)
+
+## 12.宝塔配置 NGINX
+
+在软件商店找到安装 nginx 好后(有小伙伴遇到了 nginx 下载后，启动了，但是 nginx 并没有生效的情况，可以在安装时选择编译安装就解决了)，点击配置，将我的配置复制进去就行
+
+![a1d1b2b2ecd3a271a555ba851a866f92](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570301_0.png)
+
+记得把服务器 ip 改成你自己的！
+
+```nginx
+user www www;
+worker_processes auto;
+error_log /www/wwwlogs/nginx_error.log crit;
+pid /www/server/nginx/logs/nginx.pid;
+worker_rlimit_nofile 51200;
+
+stream {
+  log_format tcp_format '$time_local|$remote_addr|$protocol|$status|$bytes_sent|$bytes_received|$session_time|$upstream_addr|$upstream_bytes_sent|$upstream_bytes_received|$upstream_connect_time';
+
+  access_log /www/wwwlogs/tcp-access.log tcp_format;
+  error_log /www/wwwlogs/tcp-error.log;
+  include /www/server/panel/vhost/nginx/tcp/*.conf;
+}
+
+events {
+  use epoll;
+  worker_connections 51200;
+  multi_accept on;
+}
+
+http {
+  include mime.types;
+  #include luawaf.conf;
+
+  include proxy.conf;
+  lua_package_path "/www/server/nginx/lib/lua/?.lua;;";
+
+  default_type application/octet-stream;
+
+  server_names_hash_bucket_size 512;
+  client_header_buffer_size 32k;
+  large_client_header_buffers 4 32k;
+  client_max_body_size 50m;
+
+  sendfile on;
+  tcp_nopush on;
+
+  keepalive_timeout 60;
+
+  tcp_nodelay on;
+
+  fastcgi_connect_timeout 300;
+  fastcgi_send_timeout 300;
+  fastcgi_read_timeout 300;
+  fastcgi_buffer_size 64k;
+  fastcgi_buffers 4 64k;
+  fastcgi_busy_buffers_size 128k;
+  fastcgi_temp_file_write_size 256k;
+  fastcgi_intercept_errors on;
+
+  gzip on;
+  gzip_min_length 1k;
+  gzip_buffers 4 16k;
+  gzip_http_version 1.1;
+  gzip_comp_level 2;
+  gzip_types text/plain application/javascript application/x-javascript text/javascript text/css application/xml;
+  gzip_vary on;
+  gzip_proxied expired no-cache no-store private auth;
+  gzip_disable "MSIE [1-6]\.";
+
+  limit_conn_zone $binary_remote_addr zone=perip:10m;
+  limit_conn_zone $server_name zone=perserver:10m;
+
+  server_tokens off;
+  access_log off;
+
+  # 数据库面板
+  server {
+    listen 888;
+    server_name phpmyadmin;
+    index index.html index.htm index.php;
+    root /www/server/phpmyadmin;
+    location ~ /tmp/ {
+      return 403;
+    }
+
+    #error_page   404   /404.html;
+    include enable-php.conf;
+
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ {
+      expires 30d;
+    }
+
+    location ~ .*\.(js|css)?$ {
+      expires 12h;
+    }
+
+    location ~ /\. {
+      deny all;
+    }
+
+    access_log /www/wwwlogs/access.log;
+  }
+
+  server {
+    listen 80;
+    server_name localhost;
+    # 博客前台前端静态资源
+    location / {
+      root /www/wwwroot/blog/blogV3/blog/dist;
+      index index.html index.htm;
+      #history模式
+      try_files $uri $uri/ /index.html;
+    }
+
+    # 小表情
+    location /emoji {
+      alias /www/wwwroot/emoji;
+      autoindex on;
+    }
+
+    location /ws/ {
+        proxy_pass http://服务器ip/:8889;
+        # 后端WebSocket服务器的地址和端口
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # 服务器存储图片
+    location /online {
+      alias /www/wwwroot/blog/blogServer/src/upload/online;
+      autoindex on;
+    }
+    # 后端服务代理
+    location /api/ {
+      proxy_pass http://服务器ip:8888/; # 服务端代理地址 或者是域名(域名解析以后要能指向服务器ip)
+      proxy_set_header Host $host; # 获取用户真实ip
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    # gitee 代理
+    location /gitee/ {
+      proxy_pass https://gitee.com/mrzym/; # 改成你的gitee面板地址
+    }
+    # minio 代理
+    location /blog-images {
+      proxy_pass http://服务器ip:9000/blog-images;
+    }
+    # 网易云音乐 代理
+    location /wapi/ {
+      proxy_pass http://服务器ip:3000/;
+    }
+  }
+
+  server {
+        listen 80;
+        server_name admin.seasir.top;  #后台域名
+
+       # 后台前端静态资源
+    location / {
+      root /www/wwwroot/blog/blogV3/admin/dist;
+      index index.html index.htm;
+      #history模式
+      try_files $uri $uri/ /index.html;
+    }
+
+    # 小表情
+    location /emoji {
+      alias /www/wwwroot/emoji;
+      autoindex on;
+    }
+
+    location /ws/ {
+        # 后端WebSocket服务器的地址和端口
+        proxy_pass http://服务器ip/:8889;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # 服务器存储图片
+    location /online {
+      root /www/wwwroot/blog/blog-server/src/upload/local;
+      autoindex on;
+    }
+
+    # gitee 代理
+    location /gitee/ {
+      proxy_pass https://gitee.com/mrzym/; # 改成你的gitee面板地址
+    }
+
+    # minio 代理
+    location /blog-images {
+      proxy_pass http://服务器ip:9000/blog-images;
+    }
+
+    # 网易云音乐 代理
+    location /wapi/ {
+      proxy_pass http://服务器ip:3000/;
+    }
+
+    # 后端服务代理
+    location /api/ {
+      proxy_pass http://服务器ip:8888/; # 服务端代理地址 或者是域名(域名解析以后要能指向服务器ip)
+      proxy_set_header Host $host; # 获取用户真实ip
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+  }
+  # include /www/server/panel/vhost/nginx/*.conf;
+}
+```
+
+## 12.部署音乐后端
+
+1. 拉取镜像
+
+```dockerfile
+docker pull binaryify/netease_cloud_music_api
+```
+
+2.运行
+
+```dockerfile
+docker run -p 3000:3000 --name netease_cloud_music_api -d binaryify/netease_cloud_music_api
+```
+
+3.nginx 配置
+
+```nginx
+# 网易云音乐 代理
+    location /wapi/ {
+      proxy_pass http://服务器ip:3000/;
+    }
+```
+
+4.开放端口，重启 nginx
+
+![image-20240716193550090](https://ice.frostsky.com/2024/08/05/b09b9e90e81d6dcc6e9651b4c5f3c458.png)
+
+## 13.部署 websocket
+
+进入 blog-v3\src\components\ChatRoom\index.vue 组件，填写服务器 ip+端口，端口对应的就是 nginx 配置后端 WebSocket 服务器的地址和端口
+
+```javascript
+const initWebsocket = async (isReconnect = false) => {
+  isConnecting.value = true;
+
+  // 如果说发现了异常 断开连接了 之前的websocket 还在的话就清空 重连
+  if (websocket) {
+    websocket.close();
+    websocket = null;
+  }
+  websocket = new WebSocket("ws://服务器ip:8889/ws/");
+  // websocket = new WebSocket("ws://localhost:8889/");
+  // localhost表示在本地 线上需要用nginx代理一下 代理在博客部署nginx配置里有
+  省略.....
+};
+```
+
+##
+
+## 常见问题
+
+## 1.数据库名称和密码都是对是，报错找不到 ws 模块解决
+
+![f4c1ac492763ccc791578284f2086671](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570436_0.png)
+
+解决 linux 下安装 node 报错： command not found：https://cloud.tencent.com/developer/article/1979850
+
+```javascript
+sudo yum install epel-release
+
+sudo yum install nodejs
+
+node --version
+```
+
+![460a3f7903ddfc2439aa7acc23adcb1a](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570443_0.png)
+
+cd 进入/www/wwwroot/blog/blog-server 输入：npm i
+
+![0ad736bea60a83b91f0727b5c44f3e6a](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570449_0.png)
+
+![f29d750ad80f48039d82aef826e7026d](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570455_0.png)
+
+![c2275e8166cb053c2eaccdfc6f639a94](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570461_0.png)
+
+## 2.admin 后台提示报错 502 原因以及解决方案
+
+![6a640ea2c2df99bffbf3aa92098f1f52](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570504_0.png)
+
+原因：nginx 后端服务代理端口配置错误，改成正确的端口号，改完重启 nginx 服务！
+
+![6d0b59ab53f2959d2efc29ee3bea0b45](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570510_0.png)
+
+![516cae106ae592e5fbd8512a2b01aaa1](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570515_0.png)
+
+## 3.注册好的账号登录后台前端无限循环返回 404
+
+原因：是因为没有配置 giree 代理，需要配置 nginx 的 gitee 代理：
+
+```javascript
+#gitee 代理
+location /gitee/ {
+  proxy_pass https://gitee.com/mrzym/; # 改成你的gitee面板地址
+}
+```
+
+![c1a0ba9b4628ffa17454b3802e08d133](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570552_0.png)
+
+## 4.解决 minio 上传图片时报 404
+
+原因是后端.env 加上了端口，去掉即可，改成重启 node 后端服务
+
+![b071b407c6183a46ed407a6b3b8c2761](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570615_0.png)
+
+![cc65ff7f6f0ad18e3d6c96a95027c86f](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570621_0.png)
+
+![f5b00ef202daa81c77e3e9eb5719d8b0](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570626_0.png)
+
+## 5.图片上传成功，但是图片是加载失败的，如图：
+
+原因是 nginx 端口配置错误，访问 minio 页面是 9999 端口 访问它的图片服务是 9000，改完重启后端服务
+
+![d77fa2c277ef2735370db9a4ecbbf55c](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570677_0.png)
+
+![8d2212fa9685e324c769efe86c356b98](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570684_0.png)
+
+## 6.解决即时聊天获取 getChatlist 接口报错 500 问题
+
+![3107e50b95b333cb2b2b5d20a3ed5a46](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570692_0.png)
+
+原因是找不到这个用户 id,去注册一个用户就行，或者给这个用户管理员权限；还不行的话清除聊天记录和下线，刷新网页再试试
+
+![0abb7b0e79bcce69058493fd49a004ff](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570700_0.png)

@@ -1,0 +1,22 @@
+// 首页壁纸
+export const Cover = [
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/1.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/2.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/3.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/4.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/5.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/6.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/7.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/8.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/9.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/10.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/11.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/12.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/13.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/14.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/15.webp", 
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/16.webp",
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/17.webp",
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/18.webp",
+  "https://img.onedayxyy.cn/images/Teek/TeekCover/19.webp",
+];

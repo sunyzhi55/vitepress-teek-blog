@@ -1,0 +1,81 @@
+// 搭配useCopyEvent.ts使用，这是横幅提示样式文件
+
+.slide-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: var(--vp-c-brand-1); // 背景的颜色配置
+  text-align: center;
+  overflow: hidden;
+  transform: translateY(-100%);
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
+
+  .slide-content {
+    padding: 20px;
+    font-size: 1rem;
+    backdrop-filter: blur(5px); // 预设值）当设置为半透明背景的时候，会有高斯模糊玻璃质感
+    position: relative;
+    z-index: 2;
+
+    h1 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: rgb(255, 255, 255); // 文字的颜色配置
+      font-weight: bold;
+    }
+  }
+
+  .slide-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #c7c7c72f; // 滑动块的颜色配置
+    transition: width 2s ease-in-out; // 动画持续时间的配置
+    // animation: remove-corner 2s ease-in-out forwards; // 逐渐圆角的动画配置，建议与  transition 保持一直呢~😏
+    // border-top-right-radius: 25px; // 圆角效果，注释/删除，取消圆角，需要同时删除下面的代码🔽
+    // border-bottom-right-radius: 25px; // 圆角效果，注释/删除，取消圆角，需要同时删除上面的代码🔼
+    z-index: 1;
+  }
+
+  &.show {
+    transform: translateY(0);
+  }
+
+  &.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+
+    .slide-block {
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+}
+
+@keyframes remove-corner {
+  0% {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+  80% {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  100% {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-content {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+}

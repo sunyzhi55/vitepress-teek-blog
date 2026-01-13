@@ -1,0 +1,24 @@
+/* 光标动画容器 */
+#guangbiao-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#guangbiao-container .star {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  color: red;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+#guangbiao-container .star::before {
+  content: "✦";
+  color: inherit;
+  inset: 0;
+  position: absolute;
+  text-shadow: 0 0 1em #fff5;
+}

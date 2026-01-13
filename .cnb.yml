@@ -1,0 +1,110 @@
+# .cnb.yml
+$:
+  # vscode 事件：专供页面中启动远程开发用
+  vscode:
+    - runner:
+        # 自定义CPU核心数,最大支持64核
+        cpus: 64
+      docker:
+        # 自定义开发环境
+        build:
+          # 指定构建镜像的 Dockerfile 文件
+          dockerfile: .ide/Dockerfile
+      services:
+        # 声明使用 vscode 服务
+        - vscode
+        # 声明在容器中支持 docker 命令
+        - docker
+      stages:
+        - name: 环境启动时执行以下命令
+          script:
+        # 安装pnpm并使用pnpm安装依赖
+            - npm install -g pnpm
+            - pnpm i
+            - pnpm docs:dev
+
+# 云原生构建流程和自动部署
+# main改成您实际的分支名称
+main:
+  push:
+    - runner:
+        cpus: 16
+      services:
+        - docker
+        - git-clone-yyds
+    - imports: https://cnb.cool/W3C/Hyde/secret/-/blob/main/env.yml
+      settings:
+        user: ${SSH_USER} # SSH用户名（从环境变量获取，避免硬编码敏感信息）
+        key: ${SSH_KEY} # SSH私钥（用于免密登录目标服务器，从环境变量获取）
+        port: 22 # SSH端口（默认22）
+        hosts:
+          - 666.666.666.666 # 目标服务器IP（要部署到的服务器地址，实际替换自己的服务器IP）
+        source: docs/.vitepress/dist/ # 待同步的本地文件目录（阶段3构建出的静态文件
+        target: /root/rsync/teek.seasir.top/dist/ # 目标服务器上的存放路径
+        delete: true # 同步时删除目标路径中不存在的文件（确保目标与本地完全一致，避免冗余文件）
+      docker:
+        image: docker.cnb.cool/znb/images/node:18
+        volumes:
+          - /data/.cache:copy-on-write #声明式的构建缓存
+      stages:
+        - name: 构建当前项目
+          script: echo -n $(date "+%Y-%m-%d %H:%M")
+          exports:
+            info: CUSTOM_ENV_DATE_INFO
+        - name: 🏠 设置淘宝源
+          script: |
+            npm config set registry https://registry.npmmirror.com
+        - name: 🖨️ 打印环境
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          script: |
+            npm install -g pnpm && node -v && npm -v && yarn -v && pnpm -v
+        - name: 💡 安装依赖 
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          script: |
+            pnpm install
+        - name: 📦️ 编译项目
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          script: |
+            pnpm docs:build   # VitePress 专用命令    
+        - name: 🚚 部署到Pages
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          image: node:22
+          script: npx edgeone pages deploy ./docs/.vitepress/dist --name teek-hyde --token $EDGEONE_PAGES_API_TOKEN
+
+
+        #同步仓库到gitee                  
+        - name: sync to gitee
+          image: tencentcom/git-sync
+          settings:
+            branch: master
+            auth_type: https
+            username: ${GIT_USERNAME}
+            password: ${GIT_ACCESS_TOKEN}
+            target_url: https://gitee.com/SeasirHyde/teek-hyde.git
+            # git_email: 'github-actions[bot]@users.noreply.github.com'
+
+
+        # 发布通知到钉钉
+        - name: 📢 发布通知到钉钉
+          image: tencentcom/dingtalk-bot-msg:latest
+          settings:
+            secret: $SECRET  # 添加钉钉机器人的签名密钥
+            webhook: $WEBHOOK  # 填写钉钉机器人的Webhook地址变量
+            at: "199********" # 多个用分号(;)分隔
+            isAtAll: true
+            debug: true # 新增: 是否启用调试模式
+            c_type: "markdown" # 支持: text, markdown, link, actionCard, multiActionCard, feedCard
+            content: |
+              > **🎉 Hyde Blog 又一次发布成功啦！**   
+              > **构建时间:** $CUSTOM_ENV_DATE_INFO          
+              > **构建id:** $CNB_BUILD_ID  
+              > **提交id:** $CNB_COMMIT_SHORT            
+              > **构建分支:** $CNB_BRANCH            
+              > **提交信息:** $CNB_COMMIT_MESSAGE_TITLE            
+              > **提交者:** $CNB_COMMITTER            
+              > **仓库地址:** [$CNB_REPO_URL_HTTPS]($CNB_REPO_URL_HTTPS)            
+              > **我的网站:** [teek.seasir.top](https://teek.seasir.top/)            

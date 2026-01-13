@@ -1,0 +1,64 @@
+// 颜色
+$light-color-1: rgba(0, 123, 255, 0.8);
+$light-color-2: rgba(136, 255, 255, 0.8);
+$light-color-3: rgba(138, 0, 255, 0.8);
+
+.vp-doc div[class*="language-"] {
+    box-shadow: 0 10px 30px 0 rgb(0 0 0 / 10%);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        z-index: -1;
+        pointer-events: none;
+        transition: border-color 0.3s ease;
+    }
+
+    &:hover:after {
+        border-color: $light-color-1;
+        animation: glow-around 3s linear infinite;
+    }
+}
+
+.vp-doc .line-numbers-wrapper {
+    padding-top: 40px;
+    border-right: none;
+}
+
+.vp-doc .line-numbers-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    right: 0;
+    border-right: 1px solid var(--vp-code-block-divider-color);
+    height: calc(100% - 60px);
+}
+
+.vp-doc div[class*="language-"].line-numbers-mode {
+    margin-bottom: 20px;
+}
+
+// 流光动画
+@keyframes glow-around {
+    0% {
+        border-color: $light-color-1;
+    }
+    33% {
+        border-color: $light-color-2;
+    }
+    66% {
+        border-color: $light-color-3;
+    }
+    100% {
+        border-color: $light-color-1;
+    }
+}

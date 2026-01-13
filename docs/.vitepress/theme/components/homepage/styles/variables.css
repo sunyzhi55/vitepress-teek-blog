@@ -1,0 +1,76 @@
+/**
+ * 安知鱼主题 CSS 变量定义
+ * 严格按照官方规范设计
+ */
+
+:root {
+  /* 主题色彩 */
+  --anzhiyu-theme: #425aef;
+  --anzhiyu-main: #425aef;
+  --anzhiyu-theme-op: rgba(66, 89, 239, 0.137);
+  --anzhiyu-theme-op-deep: rgba(66, 89, 239, 0.867);
+  --anzhiyu-main-op: rgba(66, 89, 239, 0.137);
+  --anzhiyu-main-op-deep: rgba(66, 89, 239, 0.867);
+  
+  /* 基础色彩 */
+  --anzhiyu-fontcolor: var(--vp-c-brand-1);
+  --anzhiyu-background: #f7f9fe;
+  --anzhiyu-secondtext: var(--vp-c-brand-1);
+  --anzhiyu-secondbg: #f7f7f9;
+  --anzhiyu-white: #fff;
+  --anzhiyu-white-op: rgba(255, 255, 255, 0.2);
+  --anzhiyu-card-bg: #fff;
+  --anzhiyu-maskbg: rgba(255, 255, 255, 0.6);
+  --font-color: var(--anzhiyu-fontcolor);
+  
+  /* 阴影效果 */
+  --anzhiyu-shadow-border: 0 3px 8px 6px rgba(7, 17, 27, 0.05);
+  --anzhiyu-shadow-lightblack: 0 5px 12px -5px rgba(102, 68, 68, 0);
+  --anzhiyu-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0);
+  --anzhiyu-shadow-theme: 0 8px 12px -3px var(--anzhiyu-theme-op);
+  --anzhiyu-shadow-main: 0 8px 12px -3px var(--anzhiyu-main-op);
+  --anzhiyu-shadow-blue: 0 8px 12px -3px rgba(40, 109, 234, 0.2);
+  --anzhiyu-shadow-white: 0 8px 12px -3px rgba(255, 255, 255, 0.2);
+  --anzhiyu-shadow-black: 0 0 12px 4px rgba(0, 0, 0, 0.05);
+  --anzhiyu-shadow-blackdeep: 0 2px 16px -3px rgba(0, 0, 0, 0.15);
+  
+  /* 边框样式 */
+  --anzhiyu-card-border: #e3e8f7;
+  --style-border: 1px solid var(--anzhiyu-card-border);
+  --style-border-always: 1px solid var(--anzhiyu-card-border);
+  --style-border-hover: 1px solid var(--anzhiyu-main);
+  --style-border-hover-always: 1px solid var(--anzhiyu-main);
+  
+  /* 其他颜色 */
+  --anzhiyu-blue: #5ca1ff;
+  --anzhiyu-green: #57bd6a;
+  --anzhiyu-red: #d8213c;
+  --anzhiyu-yellow: #ffc93e;
+  --anzhiyu-gray: #999;
+  --anzhiyu-gray-op: rgba(153, 153, 153, 0.169);
+  
+  /* 圆角 */
+  --anzhiyu-radius: 8px;
+  --anzhiyu-border-radius: 8px;
+  
+  /* 渐变 */
+  --anzhiyu-logo-color: linear-gradient(215deg, #4584ff 0%, #cf0db9 100%);
+  
+  /* 字体 */
+  --global-font-size: 14px;
+  
+  /* Loading Bar颜色 */
+  --loadingbar-background-color: #2c2b30;
+  --loadingbar-prospect-color: #ece5d8;
+}
+
+/* 暗色主题 */
+[data-theme="dark"] {
+  --anzhiyu-fontcolor: #f0f0f0;
+  --anzhiyu-background: #0d1117;
+  --anzhiyu-secondtext: rgba(255, 255, 255, 0.7);
+  --anzhiyu-secondbg: #161b22;
+  --anzhiyu-card-bg: #161b22;
+  --anzhiyu-maskbg: rgba(0, 0, 0, 0.6);
+  --anzhiyu-card-border: #30363d;
+}

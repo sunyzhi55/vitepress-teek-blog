@@ -1,0 +1,46 @@
+/* 定义自定义中文字体 */
+@font-face {
+  font-family: "筑紫A丸-子集";
+  src: url("/font/TsukuARdGothicStd-Bold.woff2") format("woff2");
+  font-weight: 700; /* 与实际字体匹配 */
+  font-display: swap;
+}
+
+/* 提高选择器优先级，确保字体生效 */
+:root {
+  --vp-font-family-base: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
+  --vp-font-family-mono: "筑紫A丸-子集", Menlo, Monaco, Consolas, "Courier New", monospace !important;
+}
+
+/* 全局字体设置 */
+html,
+body,
+#app,
+.VPApp {
+  font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
+}
+
+/* 针对 VitePress 主要内容区域 */
+.VPContent,
+.vp-doc,
+.content,
+.main,
+.Layout {
+  font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
+}
+
+/* 针对友链页面 */
+.my-links-container,
+.my-links-container * {
+  font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
+}
+
+/* 针对标题 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
+}
+
+/* 针对段落和文本 */
+p, span, div, a, li, td, th {
+  font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
+}
