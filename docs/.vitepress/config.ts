@@ -21,6 +21,8 @@ const description = [
   "✨Where thoughts flow, and light endures. ✨ 思流不息 % 微光长存 🔥",
 ].toString();
 
+export { base };
+
 const CoverImgList = Wallpaper; // 获取封面列表
 
 const teekConfig = defineTeekConfig({
