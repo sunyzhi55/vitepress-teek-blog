@@ -12,13 +12,13 @@ import { FooterGroup } from "./ConfigHyde/footerGroup"; //导入页脚信息组�
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { Plugins } from "./plugins";
 import { Build } from "./build";
+import { base } from "./siteBase";
 
 import { createRewrites } from "vitepress-theme-teek/config";
 
 const description = [
-  "欢迎来到 Hyde Blog 🎉",
-  "Hyde Blog 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
-  "轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
+  "欢迎来到 🔥Flumina Blog 🎉",
+  "✨Where thoughts flow, and light endures. ✨ 思流不息 % 微光长存 🔥",
 ].toString();
 
 const CoverImgList = Wallpaper; // 获取封面列表
@@ -35,10 +35,9 @@ const teekConfig = defineTeekConfig({
   loading: false, // 启用 Loading 动画，为 false 则关闭 Loading 动画
   // loading: "正在加载中...", // 修改 Loading 文案
 
-
   themeEnhance: {
     themeColor: {
-      defaultColorName: "ep-blue",   //默认主题色为蓝色
+      defaultColorName: "ep-blue", //默认主题色为蓝色
     },
   },
 
@@ -60,7 +59,6 @@ const teekConfig = defineTeekConfig({
     pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
   },
 
-
   // // 布蒜子统计分析
   // docAnalysis: {
   //   createTime: "2021-10-19",
@@ -78,7 +76,6 @@ const teekConfig = defineTeekConfig({
   //   // ],
   //   appendInfo: [{ key: "index", label: "序号", value: "One" }],
   // },
-
 
   // 布蒜子统计分析
   docAnalysis: {
@@ -98,7 +95,7 @@ const teekConfig = defineTeekConfig({
   backTop: {
     enabled: true, // 是否启动回到顶部功能
     content: "progress", // 回到顶部按钮的显示内容，可选配置 progress | icon
-    done: (TkMessage) => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
+    done: TkMessage => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
   },
   // toComment: {
   //   enabled: true, // 是否启动滚动到评论区功能
@@ -111,7 +108,7 @@ const teekConfig = defineTeekConfig({
     overlay: true, // 代码块底部是否显示展开/折叠遮罩层
     overlayHeight: 400, // 当出现遮罩层时，指定代码块显示高度，当 overlay 为 true 时生效
     langTextTransform: "uppercase", // 语言文本显示样式，为 text-transform 的值:none, capitalize, lowercase, uppercase
-    copiedDone: (TkMessage) => TkMessage.success("代码已复制 🎉"),
+    copiedDone: TkMessage => TkMessage.success("代码已复制 🎉"),
   },
   page: {
     pageSize: 16, // 每页显示的文章数量
@@ -131,7 +128,7 @@ const teekConfig = defineTeekConfig({
     cardStyleTitleTagPosition: "left", // 卡片模式下的标题标签位置（postStyle 为 card）
     defaultCoverImg: [], // 默认封面图地址，如果不设置封面图则使用默认封面图地址
   },
-  author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
+  author: { name: "🔥Flumina", link: "https://github.com/sunyzhi55" }, // 作者信息
   //文章信息分析配置，分别作用在首页和文章页
   articleAnalyze: {
     imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭}
@@ -158,7 +155,7 @@ const teekConfig = defineTeekConfig({
     homeLabel: "首页", // 鼠标悬停首页图标的提示文案
   },
   // 超过半年的文章自动提示文章内容可能已过时
-  articleTopTip: (frontmatter) => {
+  articleTopTip: frontmatter => {
     const tip: Record<string, string> = {
       type: "warning",
       text: "文章发布较早，内容可能过时，阅读注意甄别。",
@@ -166,11 +163,7 @@ const teekConfig = defineTeekConfig({
 
     // 大于半年，添加提示
     const longTime = 6 * 30 * 24 * 60 * 60 * 1000;
-    if (
-      frontmatter.date &&
-      Date.now() - new Date(frontmatter.date).getTime() > longTime
-    )
-      return tip;
+    if (frontmatter.date && Date.now() - new Date(frontmatter.date).getTime() > longTime) return tip;
   },
   // 评论配置
   comment: {
@@ -212,7 +205,7 @@ const teekConfig = defineTeekConfig({
     autoFrontmatterOption: {
       permalinkType: "simple",
       exclude: { title: true, date: true }, // 排除自动生成字段
-      transform: (frontmatter) => {
+      transform: frontmatter => {
         // 如果文件本身存在了 coverImg，则不生成
         if (frontmatter.coverImg) return; // 随机获取 coverImg
 
@@ -222,15 +215,13 @@ const teekConfig = defineTeekConfig({
 
         const transformResult = { ...frontmatter, coverImg };
 
-        return Object.keys(transformResult).length
-          ? transformResult
-          : undefined;
+        return Object.keys(transformResult).length ? transformResult : undefined;
       },
     },
   },
 
   markdown: {
-    config: (md) => {
+    config: md => {
       md.use(timeline); //时间线插件
       md.use(groupIconMdPlugin); // 代码组图标插件
     },
@@ -301,12 +292,12 @@ const teekConfig = defineTeekConfig({
   // 风险链接提示页
   riskLink: {
     enabled: true, //是否启用风险链接提示功能
-    whitelist: ["https://teek.seasir.top/", /https:\/\/github.com/], // 白名单，匹配到的链接不提示风险
+    whitelist: ["https://github.com/sunyzhi55", /https:\/\/github.com/], // 白名单，匹配到的链接不提示风险
     blacklist: [], // 黑名单，匹配到的链接提示风险
   },
   // 私密文章（登录页）
   private: {
-    enabled: true, // 是否启用私密文章功能
+    enabled: false, // 是否启用私密文章功能
     expire: "1d", //可选，登录失效时间，如果不填则以全局配置为准，全局设置默认为 1d
     session: true, //可选，开启是否在网页关闭或刷新后，清除登录状态，这样再次访问网页，需要重新登录，默认为 false
     siteLogin: false, //可选，是否使用站点级别登录功能，即第一次进入网站需要验证，默认为 false
@@ -393,16 +384,16 @@ const teekConfig = defineTeekConfig({
   //   const query = false;
   //   const { origin, pathname, search } = window.location;
   //   const url = `${origin}${frontmatter.permalink ?? pathname}${query ? search : ""}${hash ? location.hash : ""}`;
-  //   const author = "Hyde";
+  //   const author = "🔥Flumina";
 
   //   return {
   //     type: "tip",
   //     // title: "声明", // 可选
-  //     text: `<p>文章作者：<a href="https://teek.seasir.top/" target="_blank"> ${author} </a></p>
+  //     text: `<p>文章作者：<a href="https://github.com/sunyzhi55" target="_blank"> ${author} </a></p>
   //            <p>文章链接：<a href="${url}" target="_blank">${url}</a></p>
   //            <p>版权声明：本博客所有文章除特别声明外，均采用
   //            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">BY-NC-SA 4.0</a>许可协议。
-  //            转载请注明来自<a href="https://teek.seasir.top/" target="_blank"> ${author} </a>
+  //            转载请注明来自<a href="https://github.com/sunyzhi55" target="_blank"> ${author} </a>
   //            </p>
   //           `,
   //   };
@@ -423,18 +414,23 @@ export default defineConfig({
   rewrites: createRewrites({
     srcDir: "docs",
   }),
-  base: "/",
+  base, // 设置站点根路径，部署到非域名根目录时需要设置
   extends: teekConfig,
-  title: "Hyde Blog", //左上角网站名称
+  title: "🔥Flumina Blog", //左上角网站名称
   description: description,
 
   cleanUrls: true, //设置为true就是让链接后不默认添加.html
 
   lastUpdated: true, // 显示上次更新时间
   lang: "zh-CN",
-  head: HeadData as HeadConfig[],
+  head: [
+    ...(HeadData as HeadConfig[]),
+    // 标签页图标（favicon）
+    ["link", { rel: "icon", href: `${base}avatar/avatar.webp`, type: "image/x-icon" }],
+  ],
   markdown: {
     lineNumbers: true, // 开启行号
+    math: true, // LaTeX 数学公式（$...$ / $$...$$）渲染，需要安装 markdown-it-mathjax3
     image: {
       // 默认禁用；设置为 true 可为所有图片启用懒加载。
       lazyLoading: true,
@@ -449,7 +445,7 @@ export default defineConfig({
     },
   },
   sitemap: {
-    hostname: "https://onedayxyy.cn",
+    hostname: "https://github.com/sunyzhi55",
     // transformItems: items => {
     //   const permalinkItemBak: typeof items = [];
     //   // 使用永久链接生成 sitemap
@@ -479,6 +475,13 @@ export default defineConfig({
       level: [2, 4],
       label: "本页导航",
     },
+
+    // 文章内封面图开关：进入文章页时，在正文顶部显示 coverImg
+    // - 默认读取 frontmatter.coverImg（你的 autoFrontmatter 已会自动生成）
+    // - 可在单篇文章 frontmatter 里用 articleInnerCover: false 覆盖
+    articleInnerCover: {
+      enabled: true,
+    },
     docFooter: {
       prev: "上一页",
       next: "下一页",
@@ -486,49 +489,29 @@ export default defineConfig({
     nav: Nav, // 导航栏配置
     socialLinks: SocialLinks, // 社交链接配置
     search: {
-      provider: "algolia",
+      // 纯静态博客更适合使用本地搜索（构建时生成索引），避免 Algolia 未爬取/URL 基础路径不一致导致“搜不到/点开 404”
+      provider: "local",
       options: {
-        appId: "2JNHX3I8RB",
-        apiKey: "84a579c812901faa463103fb5ab52c4c",
-        indexName: "hyde_blog",
         locales: {
           root: {
-            placeholder: "搜索文档",
             translations: {
               button: {
-                buttonText: "搜索文档",
-                buttonAriaLabel: "搜索文档",
+                buttonText: "搜索",
+                buttonAriaLabel: "搜索",
               },
               modal: {
-                searchBox: {
-                  resetButtonTitle: "清除查询条件",
-                  resetButtonAriaLabel: "清除查询条件",
-                  cancelButtonText: "取消",
-                  cancelButtonAriaLabel: "取消",
-                },
-                startScreen: {
-                  recentSearchesTitle: "搜索历史",
-                  noRecentSearchesText: "没有搜索历史",
-                  saveRecentSearchButtonTitle: "保存至搜索历史",
-                  removeRecentSearchButtonTitle: "从搜索历史中移除",
-                  favoriteSearchesTitle: "收藏",
-                  removeFavoriteSearchButtonTitle: "从收藏中移除",
-                },
-                errorScreen: {
-                  titleText: "无法获取结果",
-                  helpText: "你可能需要检查你的网络连接",
-                },
+                displayDetails: "显示详细列表",
+                resetButtonTitle: "重置搜索",
+                backButtonTitle: "关闭搜索",
+                noResultsText: "没有结果",
                 footer: {
                   selectText: "选择",
+                  selectKeyAriaLabel: "回车",
                   navigateText: "切换",
+                  navigateUpKeyAriaLabel: "向上",
+                  navigateDownKeyAriaLabel: "向下",
                   closeText: "关闭",
-                  searchByText: "搜索提供者",
-                },
-                noResultsScreen: {
-                  noResultsText: "无法找到相关结果",
-                  suggestedQueryText: "你可以尝试查询",
-                  reportMissingResultsText: "你认为该查询应该有结果？",
-                  reportMissingResultsLinkText: "点击反馈",
+                  closeKeyAriaLabel: "Esc",
                 },
               },
             },
@@ -539,9 +522,9 @@ export default defineConfig({
 
     editLink: {
       text: "在 GitHub 上编辑此页",
-      pattern: "https://gitee.com/SeasirHyde/teek-hyde/edit/main/docs/:path",
+      pattern: "https://github.com/sunyzhi55/vitepress-teek-blog/edit/main/docs/:path",
     },
-  },
+  } as any,
 
   vite: {
     server: {
@@ -550,6 +533,8 @@ export default defineConfig({
       strictPort: false, // 若端口已被占用则会直接退出
       // open: true, // 运行后自动打开网页
     },
+    // 某些笔记资源使用了大写扩展名（如 .PNG），这里显式声明为静态资源，避免被当作 JS 解析
+    assetsInclude: ["**/*.PNG", "**/*.JPG", "**/*.JPEG", "**/*.GIF", "**/*.WEBP", "**/*.MP3"],
     // 构建
     build: Build() as any,
     // 插件

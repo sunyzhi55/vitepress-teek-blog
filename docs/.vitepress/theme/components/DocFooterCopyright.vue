@@ -5,21 +5,18 @@
 
     <p class="copyright-item">
       <TkIcon :icon="iconMap.authorIcon" />
-      文章作者：<a :href="authorLink" class="author-link">{{ author }}</a>
+      文章作者：
+      <a :href="authorLink" class="author-link">{{ author }}</a>
     </p>
     <p class="copyright-item">
       <TkIcon :icon="iconMap.articleIcon" />
-      文章标题：<span class="copyright-info">{{ $frontmatter.title }}</span>
+      文章标题：
+      <span class="copyright-info">{{ $frontmatter.title }}</span>
     </p>
     <p class="copyright-item">
       <TkIcon :icon="iconMap.linkIcon" />
       文章链接：
-      <a
-        :href="fullArticleUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="url-link"
-      >
+      <a :href="fullArticleUrl" target="_blank" rel="noopener noreferrer" class="url-link">
         {{ displayArticleUrl }}
       </a>
     </p>
@@ -48,8 +45,8 @@ import { TkIcon } from "vitepress-theme-teek";
 
 // ========================= 配置常量 =========================
 // 作者信息（非响应式，常量直接定义）
-const author = "Hyde";
-const authorLink = "https://teek.seasir.top/";
+const author = "🔥Flumina";
+const authorLink = "https://github.com/sunyzhi55";
 
 // 路径映射表：长路径 -> 简洁显示路径（配置型数据前置）
 const pathMapping = {
@@ -84,7 +81,7 @@ const updateArticleUrl = () => {
   const currentUrl = new URL(window.location.href);
   // 1. 处理完整URL（移除hash，用于跳转）
   const cleanFullUrl = `${currentUrl.protocol}//${currentUrl.host}${currentUrl.pathname}`;
-  
+
   // 2. 处理显示URL（匹配映射表，无匹配则用原路径）
   const mappedPath = pathMapping[currentUrl.pathname] || currentUrl.pathname;
   const cleanDisplayUrl = `${currentUrl.protocol}//${currentUrl.host}${mappedPath}`;
@@ -119,14 +116,17 @@ watch(
   border: 1px solid #e2e2e3;
   border-radius: 8px;
   transition: all 0.2s;
-  position: relative; /* 用于右上角图标绝对定位 */
+  position: relative;
+  /* 用于右上角图标绝对定位 */
 }
 
 /* 合并重复的hover样式，避免冗余 */
 .copyright-card:hover {
   border-color: var(--vp-c-tip-1);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px #217af41f, 0 0 0 1px var(--vp-c-brand);
+  box-shadow:
+    0 4px 12px #217af41f,
+    0 0 0 1px var(--vp-c-brand);
 }
 
 /* 右上角图标定位 */

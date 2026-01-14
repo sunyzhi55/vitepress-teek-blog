@@ -23,11 +23,11 @@ const teekBlogCommonConfig: TeekConfig = {
 
   blogger: {
     // 博主信息，显示在首页侧边栏
-    avatar: "/avatar/avatar.webp",  //侧边栏个人头像
+    avatar: "/avatar/avatar.webp", //侧边栏个人头像
     shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
-    name: "Hyde", // 侧边栏个人昵称
-    slogan: "人心中的成见是一座大山~", // 侧边栏个人座右铭
-    circleBgImg: "/avatar/circleBgImg.webp", // 侧边栏个人头像圆形背景图
+    name: "🔥Flumina", // 侧边栏个人昵称
+    slogan: "✨思流不息 % 微光长存 🔥 ~", // 侧边栏个人座右铭
+    circleBgImg: "/avatar/circleBgImg.jpg", // 侧边栏个人头像圆形背景图
     circleBgMask: false, // 头像圆形背景图是否显示遮罩层
     color: "#fff",
 
@@ -36,12 +36,12 @@ const teekBlogCommonConfig: TeekConfig = {
       icon: "😜", // 状态图标
       size: 24, // 图标大小
       title: "有趣", // 鼠标悬停图标的提示语
-    },    
+    },
   },
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块
     enabled: true, // Banner 标题，默认读取 vitepress 的 title 属性
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "🔥Flumina Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg", // Banner 背景风格：pure 为纯色背景，partImg 为局部图片背景，fullImg 为全屏图片背景
     imgInterval: 8000, // 轮播时间
     imgShuffle: true, // 当多张大图时（imgSrc 为数组），设置切换时间，单位：毫秒
@@ -72,7 +72,7 @@ const teekBlogCommonConfig: TeekConfig = {
   // 站点信息卡片配置
   docAnalysis: {
     enabled: true,
-    createTime: "2021-10-19",
+    createTime: "2026-01-09",
     wordCount: true,
     readingTime: true,
     statistics: {
@@ -90,7 +90,7 @@ const teekBlogCommonConfig: TeekConfig = {
         show: true,
       },
     ],
-    appendInfo: [{ key: "index", label: "序号", value: "Hyde" }],
+    appendInfo: [{ key: "index", label: "序号", value: "🔥Flumina" }],
   },
 };
 
@@ -98,7 +98,7 @@ const teekBlogCommonConfig: TeekConfig = {
 export const teekBlogConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "🔥Flumina Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     pureBgColor: "#28282d", // Banner 背景色。bgStyle 为 pure 时生效
     imgSrc: Wallpaper,
     descStyle: "types",
@@ -111,7 +111,7 @@ export const teekBlogConfig: TeekConfig = {
 export const teekBlogParkConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "🔥Flumina Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "partImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
@@ -126,7 +126,7 @@ export const teekBlogFullConfig: TeekConfig = {
     coverImgMode: "full",
   },
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "🔥Flumina Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
@@ -147,7 +147,7 @@ export const teekBlogBodyConfig: TeekConfig = {
     },
   },
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "🔥Flumina Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     description: HitokotoDate, // 打字机描述信息,
     descStyle: "types",
@@ -167,7 +167,7 @@ export const teekBlogCardConfig: TeekConfig = {
   homeCardListPosition: "left", //卡片模式下的标题标签位置
   banner: {
     enabled: true, // 是否启用 banner
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "🔥Flumina Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,

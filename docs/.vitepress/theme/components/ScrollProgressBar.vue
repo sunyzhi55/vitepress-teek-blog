@@ -1,9 +1,9 @@
 <template>
-    <div ref="progressBar" class="progress-bar" :style="{ width: progress + '%' }"></div>
+  <div ref="progressBar" class="progress-bar" :style="{ width: progress + '%' }"></div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from "vue";
 
 const progressBar = ref(null);
 const progress = ref(0);
@@ -12,19 +12,22 @@ const progress = ref(0);
 const throttle = (func, delay) => {
   let timeoutId;
   let lastExecTime = 0;
-  
-  return function(...args) {
+
+  return function (...args) {
     const currentTime = Date.now();
-    
+
     if (currentTime - lastExecTime > delay) {
       func.apply(this, args);
       lastExecTime = currentTime;
     } else {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        func.apply(this, args);
-        lastExecTime = Date.now();
-      }, delay - (currentTime - lastExecTime));
+      timeoutId = setTimeout(
+        () => {
+          func.apply(this, args);
+          lastExecTime = Date.now();
+        },
+        delay - (currentTime - lastExecTime)
+      );
     }
   };
 };
@@ -41,7 +44,7 @@ const handleScroll = () => {
       cachedScrollHeight = document.documentElement.scrollHeight;
       cachedClientHeight = document.documentElement.clientHeight;
     }
-    
+
     const totalHeight = cachedScrollHeight - cachedClientHeight;
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     progress.value = totalHeight > 0 ? (scrollTop / totalHeight) * 100 : 0;
@@ -54,36 +57,42 @@ const throttledHandleScroll = throttle(handleScroll, 50);
 onMounted(() => {
   // 初始化时计算一次
   handleScroll();
-  
+
   // 添加节流后的滚动事件监听
-  window.addEventListener('scroll', throttledHandleScroll, { passive: true });
-  
+  window.addEventListener("scroll", throttledHandleScroll, { passive: true });
+
   // 监听窗口大小变化，重置缓存
-  window.addEventListener('resize', () => {
-    cachedScrollHeight = 0;
-    cachedClientHeight = 0;
-  }, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      cachedScrollHeight = 0;
+      cachedClientHeight = 0;
+    },
+    { passive: true }
+  );
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', throttledHandleScroll);
-  window.removeEventListener('resize', () => {});
+  window.removeEventListener("scroll", throttledHandleScroll);
+  window.removeEventListener("resize", () => {});
 });
 </script>
 
 <style scoped>
 .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 2px;
-    background: linear-gradient(107deg,
-            rgb(255, 182, 133) -30.6%,
-            rgb(255, 111, 29) -1.11%,
-            rgb(252, 181, 232) 39.14%,
-            rgb(135, 148, 255) 73.35%,
-            rgb(60, 112, 255) 97.07%,
-            rgb(60, 112, 255) 118.97%);
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(
+    107deg,
+    rgb(255, 182, 133) -30.6%,
+    rgb(255, 111, 29) -1.11%,
+    rgb(252, 181, 232) 39.14%,
+    rgb(135, 148, 255) 73.35%,
+    rgb(60, 112, 255) 97.07%,
+    rgb(60, 112, 255) 118.97%
+  );
+  z-index: 9999;
 }
 </style>

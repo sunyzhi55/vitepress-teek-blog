@@ -28,8 +28,13 @@ const isMobile = ref(false);
 
 <template>
   <div v-if="!isMobile" :class="`${namespace}-arrow tk-wallpaper-outside`">
-    <TkIcon :icon="arrowSvg" size="50px" color="#ffffff" :class="`${namespace}-arrow__icon`"
-      @click="handleClickArrow" />
+    <TkIcon
+      :icon="arrowSvg"
+      size="50px"
+      color="#ffffff"
+      :class="`${namespace}-arrow__icon`"
+      @click="handleClickArrow"
+    />
   </div>
 </template>
 

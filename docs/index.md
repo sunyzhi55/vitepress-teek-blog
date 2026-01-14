@@ -1,14 +1,14 @@
 ---
 layout: home
 
-title: Hyde Blog
-titleTemplate: 人心中的成见是一座大山
+title: 🔥Flumina Blog
+titleTemplate: ✨思流不息 % 微光长存 🔥
 
 tk:
-  teekHome: false #是否启用 Teek 的首页风格，如果为 false，则还原到 Vitepress 的默认首页，其他功能不
+  teekHome: true #是否启用 Teek 的首页风格，如果为 false，则还原到 Vitepress 的默认首页，其他功能不
 
 hero:
-  name: Teek
+  name: 🔥Flumina
   text: Vitepress 主题框架
   tagline: ✨一个轻量、简洁高效、灵活配置、易于扩展的 VitePress 主题。
   actions:

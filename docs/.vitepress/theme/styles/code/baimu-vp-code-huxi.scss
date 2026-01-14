@@ -5,55 +5,55 @@ $light-color-2: rgba(0, 255, 221, 0.8);
 
 /* 样式 */
 .vp-doc div[class*="language-"] {
-    box-shadow: var(--vp-shadow-5);
-    border-radius: 8px;
-    border: 2px solid transparent;
-    position: relative;
-    z-index: 1;
-    padding: 10px;
-    margin: 10px 0;
+  box-shadow: var(--vp-shadow-5);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+  margin: 10px 0;
 
-    animation: glow-border 3s infinite linear;
+  animation: glow-border 3s infinite linear;
 
-    &.dark {
-        animation: glow-border-dark 3s infinite linear;
-    }
+  &.dark {
+    animation: glow-border-dark 3s infinite linear;
+  }
 }
 
 /* group样式 */
 .vp-code-group {
-    border-radius: 8px;
-    border: 2px solid transparent;
-    position: relative;
-    z-index: 1;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    padding: 10px;
-    margin: 10px 0;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  position: relative;
+  z-index: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  padding: 10px;
+  margin: 10px 0;
 
-    /* 样式 */
-    div[class*="language-"] {
-        box-shadow: none;
-        border: none;
-        position: static;
-        z-index: auto;
-        animation: none;
-        padding: 0;
-        margin: 0;
-    }
+  /* 样式 */
+  div[class*="language-"] {
+    box-shadow: none;
+    border: none;
+    position: static;
+    z-index: auto;
+    animation: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 /* 动画 */
 @keyframes glow-border {
-    0% {
-        box-shadow: 0 0 10px 2px $light-color-1;
-    }
-    50% {
-        box-shadow: 0 0 10px 2px $light-color-2;
-    }
-    100% {
-        box-shadow: 0 0 10px 2px $light-color-1;
-    }
+  0% {
+    box-shadow: 0 0 10px 2px $light-color-1;
+  }
+  50% {
+    box-shadow: 0 0 10px 2px $light-color-2;
+  }
+  100% {
+    box-shadow: 0 0 10px 2px $light-color-1;
+  }
 }
 
 // one 的原始代码

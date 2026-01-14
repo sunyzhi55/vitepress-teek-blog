@@ -19,14 +19,13 @@ import DocFooterCopyright from "./DocFooterCopyright.vue"; //导入文档页脚�
 import BackTop from "./BackTop.vue"; //导入回到顶部组件
 import Clock from "./Clock.vue"; // 时钟组件
 import WelcomeCard from "./WelcomeCard.vue"; // 欢迎卡片
-import WechatCard from "./WechatCard.vue";
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue"; // 过渡动画组件
 import Twikoo from "./Twikoo/Twikoo.vue";
 import ScrollToComment from "./ScrollToComment.vue";
 import CalendarCard from "./CalendarCard.vue";
 import ScheduleCard from "./ScheduleCard.vue";
 import NeteaseMusicPlayer from "./NeteaseMusicPlayer.vue";
-
+import ArticleInnerCover from "./ArticleInnerCover.vue";
 const ns = "layout-provider";
 const { frontmatter } = useData();
 
@@ -46,12 +45,9 @@ const { start: startRibbon, stop: stopRibbon } = useRibbon({
 });
 
 // 页脚运行时间
-const { start: startRuntime, stop: stopRuntime } = useRuntime(
-  "2021-10-19 00:00:00",
-  {
-    prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>小破站已运行 `,
-  }
-);
+const { start: startRuntime, stop: stopRuntime } = useRuntime("2026-01-09 00:00:00", {
+  prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>小破站已运行 `,
+});
 
 const watchRuntimeAndRibbon = async (layout: string, style: string) => {
   const isHome = layout === "home";
@@ -70,11 +66,7 @@ const watchRuntimeAndRibbon = async (layout: string, style: string) => {
   // else stopRibbon();
 };
 
-watch(
-  frontmatter,
-  async (newVal) => watchRuntimeAndRibbon(newVal.layout, currentStyle.value),
-  { immediate: true }
-);
+watch(frontmatter, async newVal => watchRuntimeAndRibbon(newVal.layout, currentStyle.value), { immediate: true });
 
 const handleConfigSwitch = (config: TeekConfig, style: string) => {
   teekConfig.value = config;
@@ -130,16 +122,22 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <BannerImgArrow />
     </template>
 
+    <!-- 文章内封面图（位于正文前，可通过全局/Frontmatter 开关控制） -->
+    <template #doc-before>
+      <ClientOnly>
+        <ArticleInnerCover />
+      </ClientOnly>
+    </template>
+
     <!-- 自定义卡片 -->
     <template #teek-home-card-my-after>
-      <WechatCard />
       <WelcomeCard />
       <CalendarCard />
       <ScheduleCard />
     </template>
 
     <!-- 自定义微信公众号卡片 -->
-    <template #teek-home-card-doc-analysis-after> </template>
+    <template #teek-home-card-doc-analysis-after></template>
 
     <!-- 回到顶部组件 -->
     <template #teek-home-bottom-after>
@@ -172,11 +170,7 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
     </template>
 
     <template #teek-to-comment="{ show, icon, scrollToComment }">
-      <ScrollToComment
-        :show="show"
-        :icon="icon"
-        :scroll-to-comment="scrollToComment"
-      />
+      <ScrollToComment :show="show" :icon="icon" :scroll-to-comment="scrollToComment" />
     </template>
   </Teek.Layout>
 </template>

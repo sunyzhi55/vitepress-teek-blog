@@ -7,18 +7,10 @@
       </div>
       <div class="item-content">
         <div id="calendar-area-left">
-          <div id="calendar-week">
-            第{{ weekNumber }}周&nbsp;{{ weekDays[today.getDay()] }}
-          </div>
+          <div id="calendar-week">第{{ weekNumber }}周&nbsp;{{ weekDays[today.getDay()] }}</div>
           <div id="calendar-date">{{ today.getDate() }}</div>
-          <div id="calendar-solar">
-            {{ today.getFullYear() }}年{{ today.getMonth() + 1 }}月第{{
-              dayOfYear
-            }}天
-          </div>
-          <div id="calendar-lunar">
-            {{ lunarYear }}&nbsp;{{ lunarMonth }}&nbsp;{{ lunarDay }}
-          </div>
+          <div id="calendar-solar">{{ today.getFullYear() }}年{{ today.getMonth() + 1 }}月第{{ dayOfYear }}天</div>
+          <div id="calendar-lunar">{{ lunarYear }}&nbsp;{{ lunarMonth }}&nbsp;{{ lunarDay }}</div>
         </div>
         <div id="calendar-area-right">
           <div id="calendar-main">
@@ -34,20 +26,9 @@
             </div>
 
             <!-- 日期行 -->
-            <div
-              v-for="(week, weekIndex) in calendarWeeks"
-              :key="weekIndex"
-              :class="`calendar-r${weekIndex + 1}`"
-            >
-              <div
-                v-for="(day, dayIndex) in week"
-                :key="dayIndex"
-                :class="`calendar-d${dayIndex}`"
-              >
-                <a
-                  :class="{ now: day.isToday, 'other-month': day.isOtherMonth }"
-                  v-if="day.date"
-                >
+            <div v-for="(week, weekIndex) in calendarWeeks" :key="weekIndex" :class="`calendar-r${weekIndex + 1}`">
+              <div v-for="(day, dayIndex) in week" :key="dayIndex" :class="`calendar-d${dayIndex}`">
+                <a :class="{ now: day.isToday, 'other-month': day.isOtherMonth }" v-if="day.date">
                   {{ day.date }}
                 </a>
                 <a v-else></a>
@@ -71,10 +52,10 @@ const weekDays = ["周日", "周一", "周二", "周三", "周四", "周五", "�
 const getCurrentTime = () => {
   // 客户端环境：直接使用本地时间，这会是用户当前时区的时间
   // 对于中国用户，这通常是北京时间
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return new Date();
   }
-  
+
   // 服务器环境：返回一个占位时间
   // 这个时间会在客户端被立即替换
   return new Date();
@@ -141,56 +122,23 @@ const weekNumber = computed(() => {
 
 // 农历转换相关
 const lunarInfo = [
-  0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0,
-  0x09ad0, 0x055d2, 0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540,
-  0x0d6a0, 0x0ada2, 0x095b0, 0x14977, 0x04970, 0x0a4b0, 0x0b4b5, 0x06a50,
-  0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970, 0x06566, 0x0d4a0,
-  0x0ea50, 0x06e95, 0x05ad0, 0x02b60, 0x186e3, 0x092e0, 0x1c8d7, 0x0c950,
-  0x0d4a0, 0x1d8a6, 0x0b550, 0x056a0, 0x1a5b4, 0x025d0, 0x092d0, 0x0d2b2,
-  0x0a950, 0x0b557, 0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5b0, 0x14573,
-  0x052b0, 0x0a9a8, 0x0e950, 0x06aa0, 0x0aea6, 0x0ab50, 0x04b60, 0x0aae4,
-  0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0, 0x096d0, 0x04dd5,
-  0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b5a0, 0x195a6,
-  0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46,
-  0x0ab60, 0x09570, 0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58,
-  0x055c0, 0x0ab60, 0x096d5, 0x092e0, 0x0c960, 0x0d954, 0x0d4a0, 0x0da50,
-  0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5, 0x0a950, 0x0b4a0,
-  0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930,
-  0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260,
-  0x0ea65, 0x0d530, 0x05aa0, 0x076a3, 0x096d0, 0x04bd7, 0x04ad0, 0x0a4d0,
-  0x1d0b6, 0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2, 0x049b0,
-  0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0,
+  0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2, 0x04ae0, 0x0a5b6, 0x0a4d0,
+  0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977, 0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54,
+  0x02b60, 0x09570, 0x052f2, 0x04970, 0x06566, 0x0d4a0, 0x0ea50, 0x06e95, 0x05ad0, 0x02b60, 0x186e3, 0x092e0, 0x1c8d7,
+  0x0c950, 0x0d4a0, 0x1d8a6, 0x0b550, 0x056a0, 0x1a5b4, 0x025d0, 0x092d0, 0x0d2b2, 0x0a950, 0x0b557, 0x06ca0, 0x0b550,
+  0x15355, 0x04da0, 0x0a5b0, 0x14573, 0x052b0, 0x0a9a8, 0x0e950, 0x06aa0, 0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570,
+  0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0, 0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540,
+  0x0b5a0, 0x195a6, 0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570, 0x04af5,
+  0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x055c0, 0x0ab60, 0x096d5, 0x092e0, 0x0c960, 0x0d954, 0x0d4a0, 0x0da50,
+  0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5, 0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0,
+  0x15176, 0x052b0, 0x0a930, 0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530,
+  0x05aa0, 0x076a3, 0x096d0, 0x04bd7, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2,
+  0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0,
 ];
 
 const gan = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
-const zhi = [
-  "子",
-  "丑",
-  "寅",
-  "卯",
-  "辰",
-  "巳",
-  "午",
-  "未",
-  "申",
-  "酉",
-  "戌",
-  "亥",
-];
-const animals = [
-  "鼠",
-  "牛",
-  "虎",
-  "兔",
-  "龙",
-  "蛇",
-  "马",
-  "羊",
-  "猴",
-  "鸡",
-  "狗",
-  "猪",
-];
+const zhi = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+const animals = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"];
 const lunarMonths = [
   "正月",
   "二月",
@@ -239,7 +187,7 @@ const lunarDays = [
 ];
 
 // 转换为农历
-const getLunarDate = (date) => {
+const getLunarDate = date => {
   // 直接使用传入的日期，不再进行时区转换，因为日期已经正确
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -259,7 +207,7 @@ const getLunarDate = (date) => {
   // 计算今年的第几天
   const yearStart = new Date(year, 0, 0);
   const offset = Math.floor((date - yearStart) / 86400000);
-  
+
   let days = 0;
   let i = 0;
 
@@ -298,12 +246,11 @@ const updateTime = () => {
   const newTime = getCurrentTime();
   const currentTimeString = newTime.toDateString();
   const todayString = today.value.toDateString();
-  
+
   // 检查日期是否变化（跨天）
   if (currentTimeString !== todayString) {
     today.value = newTime;
-  } else if (newTime.getHours() !== today.value.getHours() || 
-             newTime.getMinutes() !== today.value.getMinutes()) {
+  } else if (newTime.getHours() !== today.value.getHours() || newTime.getMinutes() !== today.value.getMinutes()) {
     // 即使是同一天，也更新时间，确保分钟级别的时间变化能反映
     today.value = newTime;
   }
@@ -313,10 +260,10 @@ const updateTime = () => {
 onMounted(() => {
   // 立即更新时间，确保显示正确的当前时间
   updateTime();
-  
+
   // 设置定时器，每分钟检查一次
   const intervalId = setInterval(updateTime, 60000);
-  
+
   // 监听页面可见性变化，当页面重新可见时更新时间
   // 这解决了用户切换标签页或浏览器后回来时时间不准确的问题
   const handleVisibilityChange = () => {
@@ -324,13 +271,13 @@ onMounted(() => {
       updateTime();
     }
   };
-  
-  document.addEventListener('visibilitychange', handleVisibilityChange);
-  
+
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+
   // 组件卸载时清理
   onUnmounted(() => {
     clearInterval(intervalId);
-    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
   });
 });
 </script>

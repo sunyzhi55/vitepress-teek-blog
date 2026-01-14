@@ -5,8 +5,10 @@ const namespace = "notice";
 <template>
   <div :class="namespace">
     <p>微信 👇</p>
-    <img src="https://resource-ai.helplook.net/docker_production/qkknm3s7/article/sOZHg5pK/67fe1ccc4ad95.jpg"
-      alt="QR Code" />
+    <img
+      src="https://resource-ai.helplook.net/docker_production/qkknm3s7/article/sOZHg5pK/67fe1ccc4ad95.jpg"
+      alt="QR Code"
+    />
     <p class="">欢迎大家私信交流</p>
   </div>
 </template>

@@ -41,4 +41,4 @@ export const PictureTools = {
       link: "https://www.imgur.la/",
     },
   ],
-}
+};

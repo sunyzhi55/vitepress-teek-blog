@@ -1,18 +1,17 @@
 import { HeadConfig } from "vitepress";
 
 const description = [
-  "欢迎来到 Hyde Blog 🎉",
-  "Hyde Blog 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
-  "轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
+  "欢迎来到 🔥Flumina Blog 🎉",
+  "✨Where thoughts flow, and light endures. ✨ 思流不息 % 微光长存 🔥",
 ].toString();
 
 const share: HeadConfig[] = [
   // 页面标题（分享时显示的标题）
-  ["meta", { property: "og:title", content: "Hyde Blog" }],
+  ["meta", { property: "og:title", content: "🔥Flumina Blog" }],
   // 页面类型（网站类型，如 article、website）
   ["meta", { property: "og:type", content: "website" }],
   // 页面 URL（分享的原始链接，建议使用绝对地址）
-  ["meta", { property: "og:url", content: "https://teek.seasir.top/" }],
+  ["meta", { property: "og:url", content: "https://github.com/sunyzhi55" }],
   // 描述信息（已配置，可保留）
   ["meta", { property: "og:description", content: "个人博客，全栈分享" }],
   // 分享图片（已配置，建议图片尺寸为 1200x630px，提升展示效果）
@@ -20,7 +19,7 @@ const share: HeadConfig[] = [
     "meta",
     {
       property: "og:image",
-      content: "https://teek.seasir.top/avatar/avatar.webp",
+      content: "/avatar/avatar.webp",
     },
   ],
   // 图片备选尺寸（可选，帮助平台识别图片）
@@ -32,7 +31,7 @@ const share: HeadConfig[] = [
 
 const weChatShare: HeadConfig[] = [
   // 微信分享标题（优先级高于 og:title）
-  ["meta", { name: "wechat-share-title", content: "威威 Blog" }],
+  ["meta", { name: "wechat-share-title", content: "🔥Flumina Blog" }],
   // 微信分享描述（优先级高于 og:description）
   ["meta", { name: "wechat-share-desc", content: "个人博客，全栈分享" }],
   // 微信分享图片（优先级高于 og:image）
@@ -40,7 +39,7 @@ const weChatShare: HeadConfig[] = [
     "meta",
     {
       name: "wechat-share-img",
-      content: "https://teek.seasir.top/avatar/avatar.webp",
+      content: "/avatar/avatar.webp",
     },
   ],
 ];
@@ -56,7 +55,7 @@ export const HeadData = [
       src: "//sdk.51.la/js-sdk-pro.min.js",
     },
   ],
-  // 灵雀应用监控平台 
+  // 灵雀应用监控平台
   [
     "script",
     {
@@ -77,40 +76,43 @@ export const HeadData = [
     "meta",
     {
       name: "viewport",
-      content:
-        "width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no",
+      content: "width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no",
     },
   ],
   ["meta", { name: "description", description }],
   ["meta", { name: "keywords", description }],
   ["meta", { name: "baidu-site-verification", content: "codeva-QnY1Xh758j" }], // 百度收录
-  [
-    "meta",
-    { name: "msvalidate.01", content: "48CABE70F538B8D117567176ABF325AF" },
-  ], // Bing 收录验证
-  ["meta", { name: "algolia-site-verification", content: "6B185D954DD3AC7E" }], // Algolia 站点验证
+  ["meta", { name: "msvalidate.01", content: "48CABE70F538B8D117567176ABF325AF" }], // Bing 收录验证
   ["meta", { property: "og:description", content: "心中的成见是一座大山" }],
   [
     "meta",
     {
       property: "og:image",
-      content: "https://teek.seasir.top/avatar/avatar.webp",
+      content: "/avatar/avatar.webp",
     },
   ],
-  // 图标
-  ["link", { rel: "icon", href: "/favicon.ico", type: "image/x-icon" }],
+  // RSS 自动发现（Feed）
+  [
+    "link",
+    {
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: "🔥Flumina Blog",
+      href: "/feed.rss",
+    },
+  ],
   // 作者信息
-  ["meta", { name: "author", content: "Hyde" }],
-   // 版权声明
-  ["meta", { name: "copyright", content: "© 2025 Hyde Blog. All Rights Reserved." }],
+  ["meta", { name: "author", content: "🔥Flumina" }],
+  // 版权声明
+  ["meta", { name: "copyright", content: "© 2025 🔥Flumina Blog. All Rights Reserved." }],
   // 规范网址，告诉搜索引擎站点的首选域名
-  ["link", { rel: "canonical", href: "https://teek.seasir.top/" }],
+  ["link", { rel: "canonical", href: "https://github.com/sunyzhi55" }],
   // Android 添加到主屏幕
-  ["meta", { name: "application-name", content: "Hyde Blog" }],
+  ["meta", { name: "application-name", content: "🔥Flumina Blog" }],
   // 站点的索引策略，index:允许索引；follow:允许跟踪链接
   ["meta", { name: "robots", content: "index, follow" }],
   // 移动设备适配声明，向搜索引擎明确站点对移动设备友好
-  ["meta", { name: "mobile-agent", content: "format=html5; url=https://teek.seasir.top/" }],
+  ["meta", { name: "mobile-agent", content: "format=html5; url=https://github.com/sunyzhi55" }],
   // 防点击劫持，禁止其他网站通过 iframe 嵌入你的站点
   ["meta", { httpEquiv: "X-Frame-Options", content: "DENY" }],
   // 防 MIME 类型嗅探，阻止浏览器猜测资源类型，避免恶意文件执行
@@ -150,32 +152,28 @@ export const HeadData = [
   ],
   ...share,
   ...weChatShare,
-  [
-    "noscript",
-    {},
-    '<meta http-equiv="refresh" content="0; url={https://www.baidu.com/}">',
-  ], // 禁用js跳转
+  ["noscript", {}, '<meta http-equiv="refresh" content="0; url={https://www.baidu.com/}">'], // 禁用js跳转
   [
     "script",
     { type: "application/ld+json" },
     JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Blog",
-      name: "Hyde Blog",
-      url: "https://teek.seasir.top/",
+      name: "🔥Flumina Blog",
+      url: "https://github.com/sunyzhi55",
       author: {
         "@type": "Person",
-        name: "Hyde"
+        name: "🔥Flumina",
       },
       keywords: ["博客", "前端", "后端", "vitepress"],
       description: "个人博客，全栈分享",
-      image: "https://teek.seasir.top/avatar/avatar.webp",
+      image: "/avatar/avatar.webp",
       publisher: {
         "@type": "Person",
-        name: "Hyde"
-      }
-    })
-  ]
+        name: "🔥Flumina",
+      },
+    }),
+  ],
   //免费的音乐播放器
   // [
   //   "script",

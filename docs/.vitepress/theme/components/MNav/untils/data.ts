@@ -30,7 +30,7 @@ import { Mysql } from "./Data/Mysql"; // 数据库
 import { DocumentNotes } from "./Data/DocumentNotes"; // 文档笔记
 import { OperationTools } from "./Data/OperationTools"; // 运维工具
 import { SSL } from "./Data/SSL"; // SSL证书
-import {Privatestorage} from "./Data/PrivateStorage" // 私有储存
+import { Privatestorage } from "./Data/PrivateStorage"; // 私有储存
 import { Other } from "./Data/Other"; // 其他
 
 export const NAV_DATA: NavData[] = [

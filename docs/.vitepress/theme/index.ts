@@ -39,14 +39,13 @@ import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样
 import { NProgress } from "nprogress-v2/dist/index.js"; // 进度条组件
 import "nprogress-v2/dist/index.css"; // 进度条样式
 // 引入复制事件（复制后弹窗提示）
-import { useCopyEvent } from "./composables/useCopyEvent.ts";
+import { useCopyEvent } from "./composables/useCopyEvent";
 import "./components/guangbiaoTX/guangbiaoTX.scss"; // ⬅️ 鼠标拖尾样式scss
 import { useGuangbiaoTX } from "./components/guangbiaoTX/useGuangbiaoTX"; // ⬅️ 导入鼠标拖尾星星动画ts
 
 export default {
   extends: Teek,
   async enhanceApp({ app, router }) {
-
     // 使用数组统一注册组件，减少重复代码
     const globalComponents = [
       { name: "MNavLinks", component: MNavLinks }, // 注册导航组件

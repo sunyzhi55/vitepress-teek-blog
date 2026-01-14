@@ -36,11 +36,22 @@ body,
 }
 
 /* 针对标题 */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
 }
 
 /* 针对段落和文本 */
-p, span, div, a, li, td, th {
+p,
+span,
+div,
+a,
+li,
+td,
+th {
   font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif !important;
 }

@@ -9,7 +9,7 @@ if (inBrowser) {
   var animationEnd = Date.now() + duration;
   var skew = 1;
 
-  function randomInRange(min, max) {
+  function randomInRange(min: number, max: number) {
     return Math.random() * (max - min) + min;
   }
 

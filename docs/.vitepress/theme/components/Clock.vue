@@ -17,9 +17,9 @@ import { onMounted, onUnmounted, shallowRef } from "vue";
 const timerID = shallowRef<number | null>(null);
 
 // 时间状态 - 拆分小时、分钟、秒
-const hours = shallowRef<string>('00');
-const minutes = shallowRef<string>('00');
-const seconds = shallowRef<string>('00');
+const hours = shallowRef<string>("00");
+const minutes = shallowRef<string>("00");
+const seconds = shallowRef<string>("00");
 
 // 初始化时钟
 const initClock = () => {
@@ -55,13 +55,13 @@ function animateClock() {
 
 // 数字补零函数
 function zeroPadding(num: number, digit: number): string {
-  return String(num).padStart(digit, '0');
+  return String(num).padStart(digit, "0");
 }
 
 onMounted(() => {
   // 组件挂载时初始化
   initClock();
-})
+});
 
 // 组件卸载时清理
 onUnmounted(() => {
@@ -87,7 +87,7 @@ onUnmounted(() => {
     font-weight: bold;
   }
 
-  .time span{
+  .time span {
     /* 将每个部分用 inline-block 包裹，形成独立“绘制单元”，避免局部更新，整个重绘的问题 */
     display: inline-block;
   }
@@ -96,7 +96,7 @@ onUnmounted(() => {
 /* 视口宽度 ≤ 767px 时生效（移动端），调整时间显示位置 */
 @media (max-width: 767px) {
   // 移动端导航栏吸顶
-  #clock{
+  #clock {
     order: 0;
   }
 }
@@ -104,10 +104,12 @@ onUnmounted(() => {
 /* 父级有.full-img-nav-bar类时的样式（Banner范围内） */
 :deep(.full-img-nav-bar #clock) {
   color: var(--vp-c-white);
-  text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
+  text-shadow:
+    0 0 20px rgba(10, 175, 230, 1),
+    0 0 20px rgba(10, 175, 230, 0);
 
   /* 暗色模式下的样式 */
-/*  :deep(html.dark .full-img-nav-bar #clock) {
+  /*  :deep(html.dark .full-img-nav-bar #clock) {
     color: #b9199b;
   }*/
 }
@@ -118,7 +120,7 @@ onUnmounted(() => {
   text-shadow: none;
 
   /* 暗色模式下的样式 */
-/*  :deep(html.dark :not(.full-img-nav-bar) #clock) {
+  /*  :deep(html.dark :not(.full-img-nav-bar) #clock) {
     color: #daf6ff;
   }*/
 }

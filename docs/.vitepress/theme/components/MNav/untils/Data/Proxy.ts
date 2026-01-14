@@ -19,12 +19,6 @@ export const Proxy = {
       link: "https://karing.app/",
     },
     {
-      icon: "https://web.telegram.org/a/icon-192x192.png",
-      title: "小羽VPN_0.7.7-去广告版.apk",
-      desc: "安卓免费VPN，速度不错,需外网下载",
-      link: "https://t.me/OJBK2333/2615",
-    },
-    {
       icon: "https://mihomo.party/logo.png",
       title: "Mihomo-Party",
       desc: "一个更易用的代理客户端",

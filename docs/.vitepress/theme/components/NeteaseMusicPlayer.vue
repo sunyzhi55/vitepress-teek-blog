@@ -1,30 +1,37 @@
 <!-- 网易云迷你播放器 -->
 <template>
   <!-- 创建播放器容器 -->
-  <div class="netease-mini-player" data-playlist-id="14273792576" data-embed="false" data-position="bottom-left"
-    data-lyric="true" data-theme="auto" data-default-minimized="true"></div>
+  <div
+    class="netease-mini-player"
+    data-playlist-id="14273792576"
+    data-embed="false"
+    data-position="bottom-left"
+    data-lyric="true"
+    data-theme="auto"
+    data-default-minimized="true"
+  ></div>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted } from "vue";
 
 // 动态引入播放器的 CSS 和 JS 文件
 onMounted(() => {
   // 引入 CSS
-  const cssLink = document.createElement('link');
-  cssLink.rel = 'stylesheet';
+  const cssLink = document.createElement("link");
+  cssLink.rel = "stylesheet";
   // cssLink.href = 'https://api.hypcvgm.top/NeteaseMiniPlayer/netease-mini-player-v2.css';
   // document.head.appendChild(cssLink);
 
   // 引入 JS 并确保加载完成后初始化
-  const script = document.createElement('script');
-  script.src = 'https://api.hypcvgm.top/NeteaseMiniPlayer/netease-mini-player-v2.js';
+  const script = document.createElement("script");
+  script.src = "https://api.hypcvgm.top/NeteaseMiniPlayer/netease-mini-player-v2.js";
   script.async = true;
   script.onload = () => {
-    console.log('网易云迷你播放器资源加载完成');
+    console.log("网易云迷你播放器资源加载完成");
   };
   script.onerror = () => {
-    console.error('网易云迷你播放器资源加载失败');
+    console.error("网易云迷你播放器资源加载失败");
   };
   document.body.appendChild(script);
 });
@@ -69,10 +76,15 @@ onUnmounted(() => {
   --primary-bg: #fafafa;
   --secondary-bg: #f0f0f0;
   --bg-color: #fafafa;
-  --accent-color: #FF6B35;
-  --accent-color-2: #7A66FF;
-  --accent-color-3: #00C2FF;
-  --accent-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-2) 50%, var(--accent-color-3) 100%);
+  --accent-color: #ff6b35;
+  --accent-color-2: #7a66ff;
+  --accent-color-3: #00c2ff;
+  --accent-gradient: linear-gradient(
+    135deg,
+    var(--accent-color) 0%,
+    var(--accent-color-2) 50%,
+    var(--accent-color-3) 100%
+  );
   --text-primary: #333333;
   --text-secondary: #666666;
   --text-muted: #999999;
@@ -99,10 +111,15 @@ onUnmounted(() => {
   --primary-bg: #1e1e1e;
   --secondary-bg: #2a2a2a;
   --bg-color: #1e1e1e;
-  --accent-color: #FF8A50;
-  --accent-color-2: #6C63FF;
-  --accent-color-3: #00D4FF;
-  --accent-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-2) 50%, var(--accent-color-3) 100%);
+  --accent-color: #ff8a50;
+  --accent-color-2: #6c63ff;
+  --accent-color-3: #00d4ff;
+  --accent-gradient: linear-gradient(
+    135deg,
+    var(--accent-color) 0%,
+    var(--accent-color-2) 50%,
+    var(--accent-color-3) 100%
+  );
   --text-primary: #e0e0e0;
   --text-secondary: #b0b0b0;
   --text-muted: #808080;
@@ -125,10 +142,15 @@ onUnmounted(() => {
     --primary-bg: #1e1e1e;
     --secondary-bg: #2a2a2a;
     --bg-color: #1e1e1e;
-    --accent-color: #FF8A50;
-    --accent-color-2: #6C63FF;
-    --accent-color-3: #00D4FF;
-    --accent-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-2) 50%, var(--accent-color-3) 100%);
+    --accent-color: #ff8a50;
+    --accent-color-2: #6c63ff;
+    --accent-color-3: #00d4ff;
+    --accent-gradient: linear-gradient(
+      135deg,
+      var(--accent-color) 0%,
+      var(--accent-color-2) 50%,
+      var(--accent-color-3) 100%
+    );
     --text-primary: #e0e0e0;
     --text-secondary: #b0b0b0;
     --text-muted: #808080;
@@ -152,10 +174,15 @@ onUnmounted(() => {
     --primary-bg: #fafafa;
     --secondary-bg: #f0f0f0;
     --bg-color: #fafafa;
-    --accent-color: #FF6B35;
-    --accent-color-2: #7A66FF;
-    --accent-color-3: #00C2FF;
-    --accent-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-2) 50%, var(--accent-color-3) 100%);
+    --accent-color: #ff6b35;
+    --accent-color-2: #7a66ff;
+    --accent-color-3: #00c2ff;
+    --accent-gradient: linear-gradient(
+      135deg,
+      var(--accent-color) 0%,
+      var(--accent-color-2) 50%,
+      var(--accent-color-3) 100%
+    );
     --text-primary: #333333;
     --text-secondary: #666666;
     --text-muted: #999999;
@@ -181,7 +208,7 @@ onUnmounted(() => {
   border-radius: 16px;
   padding: 12px;
   box-shadow: var(--shadow-outset);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   position: relative;
   overflow: visible;
   box-sizing: border-box;
@@ -194,12 +221,13 @@ onUnmounted(() => {
     border-radius 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     var(--theme-transition);
-  background: 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+  background:
+    0.5s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .netease-mini-player::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -211,8 +239,18 @@ onUnmounted(() => {
     radial-gradient(circle at 10% 75%, var(--flow-color-4) 0%, transparent 55%),
     radial-gradient(circle at 85% 80%, var(--flow-color-5) 0%, transparent 55%);
   opacity: var(--flow-opacity);
-  background-size: 220% 220%, 220% 220%, 220% 220%, 220% 220%, 220% 220%;
-  background-position: 0% 0%, 100% 0%, 0% 100%, 20% 80%, 80% 20%;
+  background-size:
+    220% 220%,
+    220% 220%,
+    220% 220%,
+    220% 220%,
+    220% 220%;
+  background-position:
+    0% 0%,
+    100% 0%,
+    0% 100%,
+    20% 80%,
+    80% 20%;
   filter: saturate(1.02) brightness(1.01);
   transform: scale(1);
   animation: flow-breathe var(--flow-speed) ease-in-out infinite;
@@ -225,19 +263,34 @@ onUnmounted(() => {
 
 @keyframes flow-breathe {
   0% {
-    background-position: 0% 0%, 100% 0%, 0% 100%, 20% 80%, 80% 20%;
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 100%,
+      20% 80%,
+      80% 20%;
     transform: scale(1);
     filter: saturate(1.02) brightness(1.01);
   }
 
   50% {
-    background-position: 100% 50%, 0% 100%, 50% 0%, 35% 65%, 65% 35%;
+    background-position:
+      100% 50%,
+      0% 100%,
+      50% 0%,
+      35% 65%,
+      65% 35%;
     transform: scale(1.03);
     filter: saturate(1.15) brightness(1.06);
   }
 
   100% {
-    background-position: 0% 100%, 100% 50%, 100% 0%, 20% 80%, 80% 20%;
+    background-position:
+      0% 100%,
+      100% 50%,
+      100% 0%,
+      20% 80%,
+      80% 20%;
     transform: scale(1);
     filter: saturate(1.02) brightness(1.01);
   }
@@ -248,7 +301,8 @@ onUnmounted(() => {
   height: 80px;
   border-radius: 50%;
   padding: 0;
-  background: radial-gradient(120px 120px at 30% 30%, rgba(255, 138, 80, 0.25), transparent 60%),
+  background:
+    radial-gradient(120px 120px at 30% 30%, rgba(255, 138, 80, 0.25), transparent 60%),
     radial-gradient(120px 120px at 70% 70%, rgba(0, 210, 255, 0.22), transparent 60%),
     linear-gradient(135deg, #151515, #1e1e1e);
   box-shadow:
@@ -337,23 +391,25 @@ onUnmounted(() => {
 }
 
 .netease-mini-player.minimized .vinyl-overlay {
-  background: radial-gradient(circle at center,
-      transparent 15%,
-      rgba(0, 0, 0, 0.1) 15%,
-      rgba(0, 0, 0, 0.1) 16%,
-      transparent 16%,
-      transparent 25%,
-      rgba(0, 0, 0, 0.15) 25%,
-      rgba(0, 0, 0, 0.15) 26%,
-      transparent 26%,
-      transparent 35%,
-      rgba(0, 0, 0, 0.1) 35%,
-      rgba(0, 0, 0, 0.1) 36%,
-      transparent 36%,
-      transparent 45%,
-      rgba(0, 0, 0, 0.15) 45%,
-      rgba(0, 0, 0, 0.15) 46%,
-      transparent 46%);
+  background: radial-gradient(
+    circle at center,
+    transparent 15%,
+    rgba(0, 0, 0, 0.1) 15%,
+    rgba(0, 0, 0, 0.1) 16%,
+    transparent 16%,
+    transparent 25%,
+    rgba(0, 0, 0, 0.15) 25%,
+    rgba(0, 0, 0, 0.15) 26%,
+    transparent 26%,
+    transparent 35%,
+    rgba(0, 0, 0, 0.1) 35%,
+    rgba(0, 0, 0, 0.1) 36%,
+    transparent 36%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.15) 45%,
+    rgba(0, 0, 0, 0.15) 46%,
+    transparent 46%
+  );
   box-shadow:
     inset 0 0 15px rgba(0, 0, 0, 0.5),
     inset 0 0 5px rgba(0, 0, 0, 0.8);
@@ -365,10 +421,7 @@ onUnmounted(() => {
 .netease-mini-player.minimized .vinyl-center {
   width: 16px;
   height: 16px;
-  background: radial-gradient(circle at 30% 30%,
-      #666 0%,
-      #333 50%,
-      #111 100%);
+  background: radial-gradient(circle at 30% 30%, #666 0%, #333 50%, #111 100%);
   box-shadow:
     0 0 3px rgba(0, 0, 0, 0.8),
     inset 1px 1px 2px rgba(255, 255, 255, 0.2);
@@ -380,7 +433,6 @@ onUnmounted(() => {
     box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     border 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 
 .netease-mini-player[data-position="top-left"] {
   position: fixed;
@@ -439,12 +491,18 @@ onUnmounted(() => {
 }
 
 .album-cover-container::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -4px;
   border-radius: 50%;
   pointer-events: none;
-  background: conic-gradient(from 0deg, var(--accent-color), var(--accent-color-2), var(--accent-color-3), var(--accent-color));
+  background: conic-gradient(
+    from 0deg,
+    var(--accent-color),
+    var(--accent-color-2),
+    var(--accent-color-3),
+    var(--accent-color)
+  );
   opacity: 0.18;
   filter: blur(6px) saturate(1.05);
 }
@@ -465,34 +523,36 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: radial-gradient(circle at center,
-      transparent 12%,
-      rgba(0, 0, 0, 0.8) 12%,
-      rgba(0, 0, 0, 0.8) 15%,
-      transparent 15%,
-      transparent 20%,
-      rgba(0, 0, 0, 0.15) 20%,
-      rgba(0, 0, 0, 0.15) 20.5%,
-      transparent 20.5%,
-      transparent 25%,
-      rgba(0, 0, 0, 0.1) 25%,
-      rgba(0, 0, 0, 0.1) 25.5%,
-      transparent 25.5%,
-      transparent 30%,
-      rgba(0, 0, 0, 0.08) 30%,
-      rgba(0, 0, 0, 0.08) 30.5%,
-      transparent 30.5%,
-      transparent 35%,
-      rgba(0, 0, 0, 0.06) 35%,
-      rgba(0, 0, 0, 0.06) 35.5%,
-      transparent 35.5%,
-      transparent 40%,
-      rgba(0, 0, 0, 0.05) 40%,
-      rgba(0, 0, 0, 0.05) 40.5%,
-      transparent 40.5%,
-      transparent 85%,
-      rgba(0, 0, 0, 0.1) 85%,
-      rgba(0, 0, 0, 0.2) 100%);
+  background: radial-gradient(
+    circle at center,
+    transparent 12%,
+    rgba(0, 0, 0, 0.8) 12%,
+    rgba(0, 0, 0, 0.8) 15%,
+    transparent 15%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.15) 20%,
+    rgba(0, 0, 0, 0.15) 20.5%,
+    transparent 20.5%,
+    transparent 25%,
+    rgba(0, 0, 0, 0.1) 25%,
+    rgba(0, 0, 0, 0.1) 25.5%,
+    transparent 25.5%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.08) 30%,
+    rgba(0, 0, 0, 0.08) 30.5%,
+    transparent 30.5%,
+    transparent 35%,
+    rgba(0, 0, 0, 0.06) 35%,
+    rgba(0, 0, 0, 0.06) 35.5%,
+    transparent 35.5%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.05) 40%,
+    rgba(0, 0, 0, 0.05) 40.5%,
+    transparent 40.5%,
+    transparent 85%,
+    rgba(0, 0, 0, 0.1) 85%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
   pointer-events: none;
   box-shadow:
     inset 0 0 10px rgba(0, 0, 0, 0.3),
@@ -505,10 +565,7 @@ onUnmounted(() => {
   left: 50%;
   width: 12px;
   height: 12px;
-  background: radial-gradient(circle at center,
-      #1a1a1a 0%,
-      #333 50%,
-      #1a1a1a 100%);
+  background: radial-gradient(circle at center, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   box-shadow:
@@ -542,7 +599,7 @@ onUnmounted(() => {
   animation-play-state: paused;
 }
 
-.album-cover.playing+.vinyl-overlay {
+.album-cover.playing + .vinyl-overlay {
   animation-play-state: running;
 }
 
@@ -602,7 +659,9 @@ onUnmounted(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition:
+    opacity 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
 }
 
 .lyric-line.current {
@@ -679,7 +738,7 @@ onUnmounted(() => {
 }
 
 .lyric-line.word-lyric::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -824,7 +883,7 @@ onUnmounted(() => {
 }
 
 .progress-bar::after {
-  content: '';
+  content: "";
   position: absolute;
   right: -2px;
   top: 50%;
@@ -1045,7 +1104,7 @@ onUnmounted(() => {
 }
 
 .playlist-container::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -1057,8 +1116,18 @@ onUnmounted(() => {
     radial-gradient(circle at 25% 70%, var(--flow-color-4) 0%, transparent 50%),
     radial-gradient(circle at 85% 75%, var(--flow-color-5) 0%, transparent 50%);
   opacity: var(--playlist-flow-opacity);
-  background-size: 220% 220%, 220% 220%, 220% 220%, 220% 220%, 220% 220%;
-  background-position: 0% 0%, 100% 0%, 0% 100%, 20% 80%, 80% 20%;
+  background-size:
+    220% 220%,
+    220% 220%,
+    220% 220%,
+    220% 220%,
+    220% 220%;
+  background-position:
+    0% 0%,
+    100% 0%,
+    0% 100%,
+    20% 80%,
+    80% 20%;
   filter: saturate(1.02) brightness(1.01);
   transform: scale(1);
   animation: flow-breathe var(--flow-speed) ease-in-out infinite;
@@ -1097,7 +1166,6 @@ onUnmounted(() => {
 
   scrollbar-width: none;
 }
-
 
 .playlist-item {
   padding: 8px 12px;
@@ -1176,7 +1244,7 @@ onUnmounted(() => {
 }
 
 .loading::after {
-  content: '';
+  content: "";
   width: 12px;
   height: 12px;
   border: 2px solid var(--secondary-bg);
@@ -1285,11 +1353,13 @@ onUnmounted(() => {
 }
 
 .netease-mini-player.minimized.fading-out {
-  animation: player-fade-out var(--opacity-duration-down, 0.6s) var(--opacity-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+  animation: player-fade-out var(--opacity-duration-down, 0.6s) var(--opacity-ease-out, cubic-bezier(0.22, 1, 0.36, 1))
+    forwards;
 }
 
 .netease-mini-player.minimized.fading-in {
-  animation: player-fade-in var(--opacity-duration-up, 0.25s) var(--opacity-ease-in, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+  animation: player-fade-in var(--opacity-duration-up, 0.25s) var(--opacity-ease-in, cubic-bezier(0.4, 0, 0.2, 1))
+    forwards;
 }
 
 @keyframes player-fade-out {
@@ -1323,13 +1393,13 @@ onUnmounted(() => {
 .netease-mini-player.minimized.fading-out.docked-right {
   animation:
     player-fade-out var(--opacity-duration-down, 0.6s) var(--opacity-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) forwards,
-    player-dock-right var(--dock-duration, 0.45s) var(--dock-ease-out, cubic-bezier(0.18, 0.9, 0.2, 1.0)) forwards;
+    player-dock-right var(--dock-duration, 0.45s) var(--dock-ease-out, cubic-bezier(0.18, 0.9, 0.2, 1)) forwards;
 }
 
 .netease-mini-player.minimized.fading-out.docked-left {
   animation:
     player-fade-out var(--opacity-duration-down, 0.6s) var(--opacity-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) forwards,
-    player-dock-left var(--dock-duration, 0.45s) var(--dock-ease-out, cubic-bezier(0.18, 0.9, 0.2, 1.0)) forwards;
+    player-dock-left var(--dock-duration, 0.45s) var(--dock-ease-out, cubic-bezier(0.18, 0.9, 0.2, 1)) forwards;
 }
 
 .netease-mini-player.minimized.popping-right {

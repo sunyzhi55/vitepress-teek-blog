@@ -40,13 +40,13 @@ const handleRouteComplete = () => {
 };
 
 // 重写路由切换前的钩子
-router.onBeforeRouteChange = (to) => {
+router.onBeforeRouteChange = to => {
   originalBeforeRouteChange && originalBeforeRouteChange(to);
   handleRouteStart();
 };
 
 // 重写路由切换后的钩子
-router.onAfterRouteChange = (to) => {
+router.onAfterRouteChange = to => {
   originalAfterRouteChange && originalAfterRouteChange(to);
   handleRouteComplete();
 };

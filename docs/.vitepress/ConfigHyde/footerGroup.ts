@@ -1,30 +1,37 @@
 // 页脚信息组配置
+// 站点部署在子路径（GitHub Pages）时需要补齐 base
+import { base } from "../siteBase";
+
+const normalizedBase = base.endsWith("/") ? base.slice(0, -1) : base;
+const withBase = (link: string) =>
+  /^https?:\/\//.test(link) ? link : `${normalizedBase}${link.startsWith("/") ? "" : "/"}${link}`;
+
 export const FooterGroup = [
   {
     title: "博客",
     links: [
-      { name: "全部分类", link: "/categories" },
-      { name: "全部标签", link: "/tags" },
-      { name: "文章归档", link: "/archivesPage" },
-      { name: "全部清单", link: "/articleOverview" },
+      { name: "全部分类", link: withBase("/categories") },
+      { name: "全部标签", link: withBase("/tags") },
+      { name: "文章归档", link: withBase("/archives") },
+      { name: "全部清单", link: withBase("/articleOverview") },
     ],
   },
   {
     title: "专栏",
     links: [
-      { name: "TeeK 主题", link: "/Teek" },
-      { name: "Vdoing主题", link: "/Vdoing/" },
-      { name: "SSL证书", link: "/SSL" },
-      { name: "博客搭建", link: "/Blog" },
+      { name: "AcWingBase", link: withBase("/algorithms/acwing-base/") },
+      { name: "左神学习笔记", link: withBase("/algorithms/zuoshen/") },
+      { name: "杂笔记", link: withBase("/algorithms/misc/") },
+      { name: "CS 学习之路", link: withBase("/cs-learning/") },
     ],
   },
   {
     title: "页面",
     links: [
-      { name: "畅所欲言", link: "/message-area/" },
-      { name: "关于本站", link: "/About" },
-      { name: "站点登录", link: "/login" },
-      { name: "风险提示", link: "/risk-link" },
+      { name: "畅所欲言", link: withBase("/message-area/") },
+      { name: "订阅更新", link: withBase("/subscribe") },
+      { name: "站点导航", link: withBase("/nav") },
+      { name: "风险提示", link: withBase("/risk-link") },
     ],
   },
   {

@@ -1,47 +1,47 @@
 <template>
   <!-- 这是一个功能组件，不渲染任何DOM元素 -->
-  <div style="display: none;"></div>
+  <div style="display: none"></div>
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount, onMounted } from 'vue'
-import { useEventListener } from 'vitepress-theme-teek'
+import { ref, onBeforeUnmount, onMounted } from "vue";
+import { useEventListener } from "vitepress-theme-teek";
 
 const props = defineProps({
-    hiddenTitle: {
-        type: String,
-        default: 'w(ﾟДﾟ)w 不要走！再看看嘛！'
-    },
-    returnTitle: {
-        type: String,
-        default: '♪(^∇^*)欢迎回来！'
-    }
-})
+  hiddenTitle: {
+    type: String,
+    default: "w(ﾟДﾟ)w 不要走！再看看嘛！",
+  },
+  returnTitle: {
+    type: String,
+    default: "♪(^∇^*)欢迎返航，舰长！",
+  },
+});
 
-const originTitle = ref('')
-const titleTimer = ref<ReturnType<typeof setTimeout>>()
-const stopListener = ref<() => void>()
+const originTitle = ref("");
+const titleTimer = ref<ReturnType<typeof setTimeout>>();
+const stopListener = ref<() => void>();
 
 onMounted(() => {
-    originTitle.value = document.title
+  originTitle.value = document.title;
 
-    const handleVisibilityChange = () => {
-        if (document.hidden) {
-            document.title = props.hiddenTitle
-            clearTimeout(titleTimer.value)
-        } else {
-            document.title = props.returnTitle
-            titleTimer.value = setTimeout(() => {
-                document.title = originTitle.value
-            }, 2000)
-        }
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      document.title = props.hiddenTitle;
+      clearTimeout(titleTimer.value);
+    } else {
+      document.title = props.returnTitle;
+      titleTimer.value = setTimeout(() => {
+        document.title = originTitle.value;
+      }, 2000);
     }
+  };
 
-    stopListener.value = useEventListener(document, 'visibilitychange', handleVisibilityChange)
-})
+  stopListener.value = useEventListener(document, "visibilitychange", handleVisibilityChange);
+});
 
 onBeforeUnmount(() => {
-    stopListener.value?.()
-    clearTimeout(titleTimer.value)
-})
+  stopListener.value?.();
+  clearTimeout(titleTimer.value);
+});
 </script>

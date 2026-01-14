@@ -10,57 +10,42 @@
           <div class="schedule-r0">
             <!-- <div class="schedule-d0">本年</div> -->
             <div class="schedule-d1">
-              <span id="p_span_year" class="aside-span1"
-                >{{ yearProgress }}%</span
-              >
+              <span id="p_span_year" class="aside-span1">{{ yearProgress }}%</span>
               <div class="progress-container">
-                <span class="aside-span2"
-                  >本年还剩<a id="year_days_left">{{ yearDaysLeft }}</a
-                  >天</span
-                >
-                <progress
-                  max="365"
-                  id="pBar_year"
-                  :value="yearPassedDays"
-                ></progress>
+                <span class="aside-span2">
+                  本年还剩
+                  <a id="year_days_left">{{ yearDaysLeft }}</a>
+                  天
+                </span>
+                <progress max="365" id="pBar_year" :value="yearPassedDays"></progress>
               </div>
             </div>
           </div>
           <div class="schedule-r1">
             <!-- <div class="schedule-d0">本月</div> -->
             <div class="schedule-d1">
-              <span id="p_span_month" class="aside-span1"
-                >{{ monthProgress }}%</span
-              >
+              <span id="p_span_month" class="aside-span1">{{ monthProgress }}%</span>
               <div class="progress-container">
-                <span class="aside-span2"
-                  >本月还剩<a id="month_days_left">{{ monthDaysLeft }}</a
-                  >天</span
-                >
-                <progress
-                  max="31"
-                  id="pBar_month"
-                  :value="monthPassedDays"
-                ></progress>
+                <span class="aside-span2">
+                  本月还剩
+                  <a id="month_days_left">{{ monthDaysLeft }}</a>
+                  天
+                </span>
+                <progress max="31" id="pBar_month" :value="monthPassedDays"></progress>
               </div>
             </div>
           </div>
           <div class="schedule-r2">
             <!-- <div class="schedule-d0">本周</div> -->
             <div class="schedule-d1">
-              <span id="p_span_week" class="aside-span1"
-                >{{ weekProgress }}%</span
-              >
+              <span id="p_span_week" class="aside-span1">{{ weekProgress }}%</span>
               <div class="progress-container">
-                <span class="aside-span2"
-                  >本周还剩<a id="week_days_left">{{ weekDaysLeft }}</a
-                  >天</span
-                >
-                <progress
-                  max="7"
-                  id="pBar_week"
-                  :value="weekDisplayValue"
-                ></progress>
+                <span class="aside-span2">
+                  本周还剩
+                  <a id="week_days_left">{{ weekDaysLeft }}</a>
+                  天
+                </span>
+                <progress max="7" id="pBar_week" :value="weekDisplayValue"></progress>
               </div>
             </div>
           </div>
@@ -98,31 +83,211 @@ const nearestHoliday = ref({ name: "元旦", days: "--", date: "--" });
  * @param {number} lunarYear - 农历年份
  * @returns {Date} 春节的公历日期
  */
-const getSpringFestivalDate = (lunarYear) => {
+const getSpringFestivalDate = lunarYear => {
   // 1900-2100年春节公历日期表（[月, 日]），已精准修正2026年（索引126）为[2,17]
   const springFestivalData = [
-    [2, 19], [2, 8], [1, 28], [2, 16], [2, 5], [1, 25], [2, 13], [2, 2], [1, 22], [2, 10], // 1900-1909 (0-9)
-    [1, 30], [2, 18], [2, 7], [1, 26], [2, 14], [2, 3], [1, 23], [2, 11], [1, 31], [2, 19], // 1910-1919 (10-19)
-    [2, 8], [1, 28], [2, 16], [2, 5], [1, 24], [2, 12], [2, 1], [1, 21], [2, 9], [1, 28],  // 1920-1929 (20-29)
-    [2, 16], [2, 5], [1, 24], [2, 12], [2, 1], [1, 21], [2, 9], [1, 29], [2, 17], [2, 6],  // 1930-1939 (30-39)
-    [1, 26], [2, 14], [2, 2], [1, 22], [2, 10], [1, 29], [2, 17], [2, 6], [1, 26], [2, 13], // 1940-1949 (40-49)
-    [2, 2], [1, 22], [2, 10], [1, 30], [2, 17], [2, 6], [1, 25], [2, 13], [2, 1], [1, 21], // 1950-1959 (50-59)
-    [2, 8], [1, 28], [2, 15], [2, 5], [1, 24], [2, 12], [1, 31], [2, 18], [2, 7], [1, 27], // 1960-1969 (60-69)
-    [2, 15], [2, 3], [1, 23], [2, 11], [1, 31], [2, 18], [2, 6], [1, 26], [2, 14], [2, 3], // 1970-1979 (70-79)
-    [1, 23], [2, 10], [1, 29], [2, 16], [2, 5], [1, 24], [2, 12], [2, 1], [1, 22], [2, 9], // 1980-1989 (80-89)
-    [1, 28], [2, 15], [2, 4], [1, 23], [2, 10], [1, 30], [2, 17], [2, 6], [1, 26], [2, 14], // 1990-1999 (90-99)
-    [2, 2], [1, 22], [2, 10], [1, 29], [2, 17], [2, 5], [1, 24], [2, 12], [1, 31], [2, 18], // 2000-2009 (100-109)
-    [2, 7], [1, 26], [2, 14], [2, 3], [1, 23], [2, 10], [1, 31], [2, 18], [2, 7], [1, 26], // 2010-2019 (110-119)
-    [2, 12], [2, 1], [1, 22], [2, 10], [1, 29], [2, 17], [2, 17], [1, 24], [2, 12], [2, 1], // 2020-2029 (120-129) 
+    [2, 19],
+    [2, 8],
+    [1, 28],
+    [2, 16],
+    [2, 5],
+    [1, 25],
+    [2, 13],
+    [2, 2],
+    [1, 22],
+    [2, 10], // 1900-1909 (0-9)
+    [1, 30],
+    [2, 18],
+    [2, 7],
+    [1, 26],
+    [2, 14],
+    [2, 3],
+    [1, 23],
+    [2, 11],
+    [1, 31],
+    [2, 19], // 1910-1919 (10-19)
+    [2, 8],
+    [1, 28],
+    [2, 16],
+    [2, 5],
+    [1, 24],
+    [2, 12],
+    [2, 1],
+    [1, 21],
+    [2, 9],
+    [1, 28], // 1920-1929 (20-29)
+    [2, 16],
+    [2, 5],
+    [1, 24],
+    [2, 12],
+    [2, 1],
+    [1, 21],
+    [2, 9],
+    [1, 29],
+    [2, 17],
+    [2, 6], // 1930-1939 (30-39)
+    [1, 26],
+    [2, 14],
+    [2, 2],
+    [1, 22],
+    [2, 10],
+    [1, 29],
+    [2, 17],
+    [2, 6],
+    [1, 26],
+    [2, 13], // 1940-1949 (40-49)
+    [2, 2],
+    [1, 22],
+    [2, 10],
+    [1, 30],
+    [2, 17],
+    [2, 6],
+    [1, 25],
+    [2, 13],
+    [2, 1],
+    [1, 21], // 1950-1959 (50-59)
+    [2, 8],
+    [1, 28],
+    [2, 15],
+    [2, 5],
+    [1, 24],
+    [2, 12],
+    [1, 31],
+    [2, 18],
+    [2, 7],
+    [1, 27], // 1960-1969 (60-69)
+    [2, 15],
+    [2, 3],
+    [1, 23],
+    [2, 11],
+    [1, 31],
+    [2, 18],
+    [2, 6],
+    [1, 26],
+    [2, 14],
+    [2, 3], // 1970-1979 (70-79)
+    [1, 23],
+    [2, 10],
+    [1, 29],
+    [2, 16],
+    [2, 5],
+    [1, 24],
+    [2, 12],
+    [2, 1],
+    [1, 22],
+    [2, 9], // 1980-1989 (80-89)
+    [1, 28],
+    [2, 15],
+    [2, 4],
+    [1, 23],
+    [2, 10],
+    [1, 30],
+    [2, 17],
+    [2, 6],
+    [1, 26],
+    [2, 14], // 1990-1999 (90-99)
+    [2, 2],
+    [1, 22],
+    [2, 10],
+    [1, 29],
+    [2, 17],
+    [2, 5],
+    [1, 24],
+    [2, 12],
+    [1, 31],
+    [2, 18], // 2000-2009 (100-109)
+    [2, 7],
+    [1, 26],
+    [2, 14],
+    [2, 3],
+    [1, 23],
+    [2, 10],
+    [1, 31],
+    [2, 18],
+    [2, 7],
+    [1, 26], // 2010-2019 (110-119)
+    [2, 12],
+    [2, 1],
+    [1, 22],
+    [2, 10],
+    [1, 29],
+    [2, 17],
+    [2, 17],
+    [1, 24],
+    [2, 12],
+    [2, 1], // 2020-2029 (120-129)
     // 索引126对应2026年，已明确设置为[2,17]
-    [1, 22], [2, 10], [1, 29], [2, 17], [2, 6], [1, 26], [2, 14], [2, 3], [1, 23], [2, 10], // 2030-2039 (130-139)
-    [1, 30], [2, 17], [2, 6], [1, 26], [2, 13], [2, 2], [1, 22], [2, 10], [1, 29], [2, 17], // 2040-2049 (140-149)
-    [2, 5], [1, 25], [2, 13], [2, 1], [1, 21], [2, 9], [1, 28], [2, 16], [2, 5], [1, 24], // 2050-2059 (150-159)
-    [2, 12], [2, 1], [1, 21], [2, 9], [1, 28], [2, 15], [2, 4], [1, 24], [2, 11], [1, 31], // 2060-2069 (160-169)
-    [2, 18], [2, 7], [1, 27], [2, 15], [2, 3], [1, 23], [2, 11], [1, 31], [2, 18], [2, 6], // 2070-2079 (170-179)
-    [1, 26], [2, 14], [2, 3], [1, 23], [2, 10], [1, 29], [2, 16], [2, 5], [1, 24], [2, 12], // 2080-2089 (180-189)
-    [2, 1], [1, 22], [2, 9], [1, 28], [2, 15], [2, 4], [1, 23], [2, 10], [1, 30], [2, 17], // 2090-2099 (190-199)
-    [2, 5] // 2100年 (200)
+    [1, 22],
+    [2, 10],
+    [1, 29],
+    [2, 17],
+    [2, 6],
+    [1, 26],
+    [2, 14],
+    [2, 3],
+    [1, 23],
+    [2, 10], // 2030-2039 (130-139)
+    [1, 30],
+    [2, 17],
+    [2, 6],
+    [1, 26],
+    [2, 13],
+    [2, 2],
+    [1, 22],
+    [2, 10],
+    [1, 29],
+    [2, 17], // 2040-2049 (140-149)
+    [2, 5],
+    [1, 25],
+    [2, 13],
+    [2, 1],
+    [1, 21],
+    [2, 9],
+    [1, 28],
+    [2, 16],
+    [2, 5],
+    [1, 24], // 2050-2059 (150-159)
+    [2, 12],
+    [2, 1],
+    [1, 21],
+    [2, 9],
+    [1, 28],
+    [2, 15],
+    [2, 4],
+    [1, 24],
+    [2, 11],
+    [1, 31], // 2060-2069 (160-169)
+    [2, 18],
+    [2, 7],
+    [1, 27],
+    [2, 15],
+    [2, 3],
+    [1, 23],
+    [2, 11],
+    [1, 31],
+    [2, 18],
+    [2, 6], // 2070-2079 (170-179)
+    [1, 26],
+    [2, 14],
+    [2, 3],
+    [1, 23],
+    [2, 10],
+    [1, 29],
+    [2, 16],
+    [2, 5],
+    [1, 24],
+    [2, 12], // 2080-2089 (180-189)
+    [2, 1],
+    [1, 22],
+    [2, 9],
+    [1, 28],
+    [2, 15],
+    [2, 4],
+    [1, 23],
+    [2, 10],
+    [1, 30],
+    [2, 17], // 2090-2099 (190-199)
+    [2, 5], // 2100年 (200)
   ];
 
   const index = lunarYear - 1900;
@@ -140,24 +305,24 @@ const getSpringFestivalDate = (lunarYear) => {
 const getTargetSpringFestival = () => {
   const today = new Date();
   const currentYear = today.getFullYear();
-  
+
   // 基准年份：2026年
   const baseYear = 2026;
-  
+
   // 如果当前年份小于2026年，目标就是2026年元旦
   if (currentYear < baseYear) {
     return new Date(baseYear, 0, 1);
   }
-  
+
   // 如果当前年份等于或大于2026年
   // 春节固定在每年1月1日（元旦）
   const targetSpring = new Date(currentYear, 0, 1);
-  
+
   // 如果今天已经过了今年的元旦，则目标为明年的元旦
   if (today >= targetSpring) {
     return new Date(currentYear + 1, 0, 1);
   }
-  
+
   return targetSpring;
 };
 
@@ -188,8 +353,8 @@ const updateSpringFestivalCountdown = () => {
   springFestivalDays.value = getDaysDifference(utcToday, targetSpring);
   // 格式化日期为YYYY-MM-DD
   const year = targetSpring.getFullYear();
-  const month = String(targetSpring.getMonth() + 1).padStart(2, '0');
-  const day = String(targetSpring.getDate()).padStart(2, '0');
+  const month = String(targetSpring.getMonth() + 1).padStart(2, "0");
+  const day = String(targetSpring.getDate()).padStart(2, "0");
   springFestivalDateText.value = `${year}-${month}-${day}`;
 };
 
@@ -252,7 +417,7 @@ const updateWeekProgress = () => {
  * @param {number} year - 年份
  * @returns {Array} 节日数组
  */
-const getAllHolidays = (year) => {
+const getAllHolidays = year => {
   return [
     { name: "元旦", date: new Date(year, 0, 1) },
     { name: "春节", date: new Date(year, 0, 1) }, // 2026年后春节=元旦
@@ -260,7 +425,7 @@ const getAllHolidays = (year) => {
     { name: "劳动节", date: new Date(year, 4, 1) },
     { name: "端午节", date: new Date(year, 5, 5) }, // 农历五月初五，简化处理
     { name: "中秋节", date: new Date(year, 8, 15) }, // 农历八月十五，简化处理
-    { name: "国庆节", date: new Date(year, 9, 1) }
+    { name: "国庆节", date: new Date(year, 9, 1) },
   ];
 };
 
@@ -271,13 +436,13 @@ const updateNearestHoliday = () => {
   const today = new Date();
   const currentYear = today.getFullYear();
   const nextYear = currentYear + 1;
-  
+
   // 获取今年和明年的所有节日
   const holidays = [...getAllHolidays(currentYear), ...getAllHolidays(nextYear)];
-  
+
   // 过滤掉已经过去的节日
   const upcomingHolidays = holidays.filter(holiday => holiday.date > today);
-  
+
   if (upcomingHolidays.length > 0) {
     // 找到距离最近的节日
     const nearest = upcomingHolidays.reduce((prev, current) => {
@@ -285,19 +450,19 @@ const updateNearestHoliday = () => {
       const currentDiff = current.date - today;
       return currentDiff < prevDiff ? current : prev;
     });
-    
+
     // 计算天数差
     const daysDiff = getDaysDifference(today, nearest.date);
-    
+
     // 格式化日期
     const year = nearest.date.getFullYear();
-    const month = String(nearest.date.getMonth() + 1).padStart(2, '0');
-    const day = String(nearest.date.getDate()).padStart(2, '0');
-    
+    const month = String(nearest.date.getMonth() + 1).padStart(2, "0");
+    const day = String(nearest.date.getDate()).padStart(2, "0");
+
     nearestHoliday.value = {
       name: nearest.name,
       days: daysDiff,
-      date: `${year}-${month}-${day}`
+      date: `${year}-${month}-${day}`,
     };
   } else {
     nearestHoliday.value = { name: "元旦", days: "--", date: "--" };

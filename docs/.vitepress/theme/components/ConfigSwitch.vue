@@ -7,7 +7,7 @@ import {
   TkThemeEnhanceBaseTemplate as BaseTemplate,
   useClipboard,
   useStorage,
-  useCommon
+  useCommon,
 } from "vitepress-theme-teek";
 import { nextTick, ref, watch } from "vue";
 import {
@@ -16,7 +16,7 @@ import {
   teekBlogParkConfig,
   teekBlogFullConfig,
   teekBlogBodyConfig,
-  teekBlogCardConfig
+  teekBlogCardConfig,
 } from "../config/teekConfig";
 
 const ns = "config-switch";
@@ -27,14 +27,14 @@ const tipInfo = {
     { title: "说明 1", content: "这里预设了一些 Teek 的配置模板，点击可快速切换查看效果" },
     {
       title: "说明 2",
-      content: "您可以点击 Copy 按钮来复制配置项到您的项目 config.mts 文件里，这给第一次使用 Teek 的用户提供开箱帮助"
+      content: "您可以点击 Copy 按钮来复制配置项到您的项目 config.mts 文件里，这给第一次使用 Teek 的用户提供开箱帮助",
     },
     {
       title: "说明 3",
       content:
-        "除了这里提供的配置模板，Teek 文档自己单独使用了一些公共配置项，具体请看 Teek 的 config.mts 文件，也就是说您要完全达到当前预览的效果，需要 Copy 当前的配置模板 + Teek 文档单独的配置"
-    }
-  ]
+        "除了这里提供的配置模板，Teek 文档自己单独使用了一些公共配置项，具体请看 Teek 的 config.mts 文件，也就是说您要完全达到当前预览的效果，需要 Copy 当前的配置模板 + Teek 文档单独的配置",
+    },
+  ],
 };
 const segmentedOptions = [
   { value: "doc", label: "文档预设", title: "文档默认风格" },
@@ -42,7 +42,7 @@ const segmentedOptions = [
   { value: "blog-part", label: "博客小图", title: "首页 Banner 小图" },
   { value: "blog-full", label: "博客大图", title: "首页 Banner 大图 + 评论" },
   { value: "blog-body", label: "博客全图", title: "全站背景图 + 碎片化文章页" },
-  { value: "blog-card", label: "博客卡片", title: "首页卡片文章列表 + 左侧卡片栏列表" }
+  { value: "blog-card", label: "博客卡片", title: "首页卡片文章列表 + 左侧卡片栏列表" },
 ];
 
 const emit = defineEmits<{

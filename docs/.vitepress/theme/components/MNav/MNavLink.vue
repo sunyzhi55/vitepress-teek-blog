@@ -2,7 +2,7 @@
 import { computed, watch, shallowRef } from "vue";
 import { withBase } from "vitepress";
 import { slugify } from "@mdit-vue/shared";
-import { NavLink } from './untils/types'
+import { NavLink } from "./untils/types";
 import { TkIcon } from "vitepress-theme-teek";
 import { NoIcon } from "../../icon/NavIcon";
 
@@ -19,9 +19,13 @@ const props = defineProps<{
 const imgError = shallowRef(false);
 
 // 优化 watch，添加 flush: 'post' 避免不必要的重复执行
-watch(() => props.icon, () => {
-  imgError.value = false;
-}, { flush: 'post' });
+watch(
+  () => props.icon,
+  () => {
+    imgError.value = false;
+  },
+  { flush: "post" }
+);
 
 // 缓存计算结果，避免重复计算
 const showImg = computed(() => {
@@ -32,7 +36,7 @@ const imgSrc = computed(() => {
   if (typeof props.icon === "string") {
     return withBase(props.icon);
   }
-  return '';
+  return "";
 });
 
 // 优化：只在有title时才计算slugify，避免不必要的计算
@@ -42,14 +46,14 @@ const formatTitle = computed(() => {
 
 // 安全的SVG处理：添加基本的XSS防护
 const safeSvg = computed(() => {
-  if (typeof props.icon === "object" && props.icon && 'svg' in props.icon) {
+  if (typeof props.icon === "object" && props.icon && "svg" in props.icon) {
     const svg = props.icon.svg;
     // 基本的XSS防护：移除潜在危险的标签和属性
-    if (typeof svg === 'string') {
+    if (typeof svg === "string") {
       return svg
-        .replace(/<script[^>]*>.*?<\/script>/gi, '')
-        .replace(/on\w+="[^"]*"/gi, '')
-        .replace(/javascript:/gi, '');
+        .replace(/<script[^>]*>.*?<\/script>/gi, "")
+        .replace(/on\w+="[^"]*"/gi, "")
+        .replace(/javascript:/gi, "");
     }
     return svg;
   }
@@ -104,7 +108,10 @@ const handleImageError = () => {
   height: 100%;
   background-color: var(--vp-c-bg-soft);
   /* 优化：背景色无过渡，立即响应，其他属性保持平滑过渡 */
-  transition: transform 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+  transition:
+    transform 0.25s ease-out,
+    border-color 0.25s ease-out,
+    box-shadow 0.25s ease-out;
   /* 优化：启用硬件加速 */
   will-change: transform;
 }
@@ -163,7 +170,9 @@ const handleImageError = () => {
   font-size: var(--m-nav-icon-size);
   background-color: var(--vp-c-bg-soft-down);
   /* 优化：分离动画属性，提升性能 */
-  transition: transform 0.6s ease-in-out, opacity 0.4s ease-in-out;
+  transition:
+    transform 0.6s ease-in-out,
+    opacity 0.4s ease-in-out;
   flex-shrink: 0;
   transform: translateX(0) scale(1);
   opacity: 1;

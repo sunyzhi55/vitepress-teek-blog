@@ -24,11 +24,7 @@
       </div>
 
       <!-- Badge 标签 - 右上角定位 -->
-      <span
-        v-if="data.badge && data.badge.trim()"
-        class="link-badge"
-        :class="getBadgeClass(data.badgeType)"
-      >
+      <span v-if="data.badge && data.badge.trim()" class="link-badge" :class="getBadgeClass(data.badgeType)">
         {{ data.badge }}
       </span>
     </a>
@@ -51,7 +47,7 @@ const handleImageError = () => {
 };
 
 // Badge 类型映射
-const getBadgeClass = (badgeType) => {
+const getBadgeClass = badgeType => {
   const typeMap = {
     tip: "badge-tip",
     warning: "badge-warning",
@@ -96,7 +92,10 @@ const getBadgeClass = (badgeType) => {
   align-items: center;
   justify-content: center;
   transform-origin: center center;
-  transition: transform 0.5s ease, flex-basis 0.5s ease, width 0.5s ease,
+  transition:
+    transform 0.5s ease,
+    flex-basis 0.5s ease,
+    width 0.5s ease,
     opacity 0.5s ease;
 }
 
@@ -124,7 +123,9 @@ const getBadgeClass = (badgeType) => {
   font-weight: 600;
   color: #555;
   font-size: 1.2rem;
-  transition: transform 0.25s ease-out, border-color 0.25s ease-out,
+  transition:
+    transform 0.25s ease-out,
+    border-color 0.25s ease-out,
     box-shadow 0.25s ease-out;
 }
 
@@ -142,15 +143,21 @@ const getBadgeClass = (badgeType) => {
   padding: 0;
   opacity: 0;
   overflow: hidden;
-  transition: transform 0.3s ease, flex-basis 0.3s ease, width 0.3s ease,
+  transition:
+    transform 0.3s ease,
+    flex-basis 0.3s ease,
+    width 0.3s ease,
     opacity 0.25s ease;
 }
 
 .link-content {
   flex: 1;
   padding: 0 16px 0 0px;
-  transition: margin-left 0.3s ease, transform 0.25s ease-out,
-    border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+  transition:
+    margin-left 0.3s ease,
+    transform 0.25s ease-out,
+    border-color 0.25s ease-out,
+    box-shadow 0.25s ease-out;
 }
 
 .link-name {
@@ -191,6 +198,5 @@ const getBadgeClass = (badgeType) => {
   letter-spacing: 0.2px;
   background-color: var(--vp-badge-tip-bg);
   color: var(--vp-badge-tip-text);
-
 }
 </style>

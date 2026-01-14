@@ -6,7 +6,7 @@ export const FriendLink = {
   scrollSpeed: 2500, // 滚动间隔时间，单位：毫秒。autoScroll 为 true 时生效
   autoPage: true, // 是否自动翻页
   pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
-  titleClick: (router) => router.go("/websites"), // 查看更多友链
+  titleClick: (router: any) => router.go("/websites"), // 查看更多友链
   // 友情链接数据列表
   list: [
     {
@@ -19,8 +19,7 @@ export const FriendLink = {
       name: "Teeker",
       desc: "朝圣的使徒，正在走向编程的至高殿堂！",
       link: "http://notes.teek.top/",
-      avatar:
-        "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar2.png",
+      avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar2.png",
     },
     {
       avatar: "https://onedayxyy.cn/favicon.ico",

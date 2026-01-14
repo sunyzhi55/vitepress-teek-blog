@@ -13,16 +13,17 @@
         <span class="announcement-text">
           {{ noticeContent.error }}
         </span>
-        <span class="announcement-text" v-html="noticeContent.email"> </span>
+        <span class="announcement-text" v-html="noticeContent.email"></span>
       </div>
 
       <!-- IP位置信息 -->
       <div class="ip-section" v-if="ipData">
         <div class="ip-header">
-          <span class="ip-location"
-            >欢迎来自<span class="red-text"> {{ getLocationText() }} </span
-            >的朋友💖</span
-          >
+          <span class="ip-location">
+            欢迎来自
+            <span class="red-text">{{ getLocationText() }}</span>
+            的朋友💖
+          </span>
         </div>
         <div class="ip-info">
           <div class="ip-details">
@@ -30,8 +31,9 @@
             <span class="ip-address" :title="ipData.ip">{{ ipData.ip }}</span>
           </div>
           <div class="distance-info" v-if="distance">
-            当前位置距博主约<span class="distance-value">{{ distance }}</span
-            >公里
+            当前位置距博主约
+            <span class="distance-value">{{ distance }}</span>
+            公里
           </div>
           <div class="greeting-section" v-if="ipData">
             <span class="greeting-text">{{ getGreetingText() }}</span>
@@ -44,10 +46,9 @@
       <div class="weather-section" v-if="weatherData">
         <div class="weather-header">
           <span class="weather-icon">🌤️</span>
-          <span class="weather-location"
-            >{{ weatherData.province }} {{ weatherData.city }}
-            {{ weatherData.district }}</span
-          >
+          <span class="weather-location">
+            {{ weatherData.province }} {{ weatherData.city }} {{ weatherData.district }}
+          </span>
         </div>
         <div class="weather-info">
           <div class="weather-main">
@@ -55,16 +56,11 @@
             <span class="weather-desc">{{ weatherData.weather }}</span>
           </div>
           <div class="weather-details">
-            <span
-              >{{ weatherData.wind_direction }}
-              {{ weatherData.wind_power }}</span
-            >
+            <span>{{ weatherData.wind_direction }} {{ weatherData.wind_power }}</span>
             <span>湿度 {{ weatherData.humidity }}%</span>
           </div>
         </div>
-        <div class="weather-update">
-          最后更新: {{ weatherData.update_time }}
-        </div>
+        <div class="weather-update">最后更新: {{ weatherData.update_time }}</div>
       </div>
     </div>
   </TkPageCard>
@@ -116,11 +112,11 @@ const distance = ref<string>("");
 // 公告内容
 const noticeContent: NoticeContent = {
   title: "📢 欢迎来访者",
-  subtitle: "👋🏻 Hi，我是Hyde，欢迎您！",
+  subtitle: "👋🏻 Hi，我是🔥Flumina，欢迎您！",
   content: "❓ 如有问题欢迎评论区交流！",
   error: "😫 页面异常？尝试Ctrl+F5",
   email:
-    '📧 如需联系我：<a href="mailto:seasir666@gmail.com" style="color: var(--vp-c-brand-1);">发送邮件🚀</a>',
+    '🔗 联系我：<a href="https://github.com/sunyzhi55" target="_blank" rel="noopener" style="color: var(--vp-c-brand-1);">GitHub</a> · <a href="https://gitee.com/sunyzhi55" target="_blank" rel="noopener" style="color: var(--vp-c-brand-1);">Gitee</a> · <a href="/feed.rss" target="_blank" rel="noopener" style="color: var(--vp-c-brand-1);">RSS 订阅</a>',
 };
 
 // 获取IP数据
@@ -135,7 +131,7 @@ const fetchIPData = async (): Promise<void> => {
     }
 
     const result = await response.json();
-    
+
     // 处理新API返回的数据结构
     if (result && result.code === 200 && result.data) {
       const data = result.data;
@@ -147,7 +143,7 @@ const fetchIPData = async (): Promise<void> => {
         district: data.district ? data.district : "",
         adcode: 0,
         lat: data.location ? data.location.lat : 0,
-        lng: data.location ? data.location.lng : 0
+        lng: data.location ? data.location.lng : 0,
       };
       // 计算距离
       distance.value = calculateDistance();
@@ -165,7 +161,7 @@ const fetchWeatherData = async (): Promise<void> => {
   // 暂时禁用天气数据获取，因为新的IP查询API不包含天气信息
   // 如需天气功能，需要另外集成天气API
   weatherData.value = null;
-  
+
   /*
   // 如果后续需要天气功能，可以使用其他天气API，例如：
   try {
@@ -205,14 +201,14 @@ const getLocationText = (): string => {
 
   return "未知地区";
 };
-
+// 杭州经纬度 120.22,30.25
 // 计算距离（广州经纬度：23.12911033630371, 113.2643814086914）
 const calculateDistance = (): string => {
   if (!ipData.value || !ipData.value.lat || !ipData.value.lng) return "";
 
   // 替换自己实际经纬度，可以通过 https://www.lddgo.net/convert/position 百度地图来定位自己的位置
-  const guangzhouLat = 23.1;
-  const guangzhouLng = 113.3;
+  const guangzhouLat = 30.25;
+  const guangzhouLng = 120.22;
 
   const userLat = ipData.value.lat;
   const userLng = ipData.value.lng;

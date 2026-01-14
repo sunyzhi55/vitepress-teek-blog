@@ -74,5 +74,5 @@ export const Utilities = {
       desc: "一个免费的在线工具集合，持续开发各种好用的工具",
       link: "https://d1tools.com/tools/",
     },
-  ]
-}
+  ],
+};
